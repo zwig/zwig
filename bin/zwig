@@ -10,7 +10,12 @@
  * with this source code.
  */
 
-require_once(dirname(dirname(__FILE__)) . "/vendor/autoload.php");
+if (file_exists(__DIR__ . "/../vendor/autoload.php")) {
+    require_once(__DIR__ . "/../vendor/autoload.php");
+} else {
+    /** @noinspection PhpIncludeInspection */
+    require_once(__DIR__ . "/../../../autoload.php");
+}
 
 use Zwig\Exception\InvalidParameterException;
 use Zwig\Tool\ZwigTool;
