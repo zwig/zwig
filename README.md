@@ -35,8 +35,8 @@ Start using them:
 <!DOCTYPE html>
 <html>
     <body>
-        <script src="vendor/zwig/dist/zwig.min.js"></script>
-        <script src="vendor/zwig/examples/hello.js"></script>
+        <script src="vendor/zwig/zwig/dist/zwig.min.js"></script>
+        <script src="vendor/zwig/zwig/examples/hello.js"></script>
         <script>
             document.write(Zwig.render('hello.twig', {
                 name: 'GitHub'
@@ -46,7 +46,7 @@ Start using them:
 </html>
 ```
 
-Check the directory ```vendor/zwig/examples``` for more examples.
+Check the directory ```vendor/zwig/zwig/examples``` for more examples.
 
 
 [1]: http://twig.sensiolabs.org/
