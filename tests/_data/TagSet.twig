@@ -1,0 +1,67 @@
+<h1>Check if the tag `set` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/tags/set.html">
+        http://twig.sensiolabs.org/doc/tags/set.html
+    </a>
+</p>
+
+<section>
+    <!-- new variable -->
+    {% set first_name = 'William' %}
+
+    <!-- existing variable -->
+    {% set last_name = 'Someone' %}
+
+    <p>Hello {{ first_name }} {{ last_name }}</p>
+
+    {% set name = first_name ~ ' ' ~ last_name %}
+    <p>Hello {{ name }}</p>
+
+    {% set integer = 0123456789 %}
+    <p>{{ integer }}</p>
+
+    {% set string = '0123456789' %}
+    <p>{{ string }}</p>
+
+    {% set string = '0xff' %}
+    <p>{{ string }}</p>
+</section>
+
+<section>
+    {% set postcode, city = '07745', 'Jena' %}
+
+    <p>{{ postcode }} {{ city }}, Germany</p>
+</section>
+
+<section>
+    {% set html = '<strong>Notice</strong>' %}
+    {{ html }}
+</section>
+
+<section>
+    {% set list = ['Apple', 42, 3.12, 'Pi'] %}
+
+    <p>
+        {{ list[0] }}<br/>
+        {{ list[1] }}<br/>
+        {{ list[2] }}<br/>
+        {{ list[3] }}
+    </p>
+</section>
+
+<section>
+    {% set dict = {'pineapple':'Ananas'} %}
+    <p>{{ dict.pineapple }}</p>
+
+    {% set address = {
+    'postcode': postcode,
+    'city': city,
+    'name': name,
+    } %}
+
+    <address>
+        {{ address.name }}<br>
+        {{ address.postcode }} {{ address.city }}
+    </address>
+</section>

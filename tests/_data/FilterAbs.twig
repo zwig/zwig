@@ -1,0 +1,24 @@
+<h1>Check if the filter `abs` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/abs.html">
+        http://twig.sensiolabs.org/doc/filters/abs.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 0|abs }}</li>
+        <li>{{ (-0)|abs }}</li>
+        <li>{{ 42|abs }}</li>
+        <li>{{ (-42)|abs }}</li>
+        <li>{{ 3.12|abs }}</li>
+        <li>{{ (-3.12)|abs }}</li>
+        <li>{{ 'string'|abs }}</li>
+        <li>{{ true|abs }}</li>
+        <li>{{ false|abs }}</li>
+        <li>{{ null|abs }}</li>
+        <li>{{ [1, 2, 3]|abs }}</li>
+        <li>{{ {"a": 1, "b": 2, "c":3}|abs }}</li>
+    </ul>
+</section>

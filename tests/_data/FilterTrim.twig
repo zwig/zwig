@@ -1,0 +1,23 @@
+<h1>Check if the filter `trim` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/trim.html">
+        http://twig.sensiolabs.org/doc/filters/trim.html
+    </a>
+</p>
+
+<section>
+    <p>{{ 'Lorem Ipsum'|trim }}</p>
+    <p>{{ 'Lorem Ipsum  '|trim }}</p>
+    <p>{{ '  Lorem Ipsum'|trim }}</p>
+    <p>{{ '  Lorem Ipsum  '|trim }}</p>
+    <p>{{ 'Lorem Ipsum.'|trim('.') }}</p>
+    <p>{{ '.Lorem Ipsum'|trim('.') }}</p>
+    <p>{{ '.Lorem Ipsum.'|trim('.') }}</p>
+    <p>{{ 42|trim }}</p>
+    <p>{{ 3.12|trim }}</p>
+    <p>{{ true|trim }}</p>
+    <p>{{ null|trim }}</p>
+    <p>{{ [1, 2, 3]|trim }}</p>
+    <p>{{ {"a": 1, "b": 2, "c": 3}|trim }}</p>
+</section>

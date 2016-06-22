@@ -1,0 +1,13 @@
+{
+    "name": "zwig",
+    "version": "0.1.0",
+    "description": "Zwig converts Twig templates into executable JavaScript",
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-jshint": "^1.0.0",
+        "grunt-contrib-uglify": "^1.0.1",
+        "grunt-contrib-watch": "^1.0.0"
+    },
+    "author": "Alexander Skrotzky",
+    "license": "MIT"
+}

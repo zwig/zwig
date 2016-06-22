@@ -1,0 +1,18 @@
+<h1>Check if the operator `..` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#other-operators">
+        http://twig.sensiolabs.org/doc/templates.html#other-operators
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ (1..5)|join(',') }}</li>
+        <li>{{ (1.5..5)|join(',') }}</li>
+        <li>{{ (1.5..5.5)|join(',') }}</li>
+        <li>{{ (5..1)|join(',') }}</li>
+        <li>{{ ('a'..'e')|join(',') }}</li>
+        <li>{{ ('e'..'a')|join(',') }}</li>
+    </ul>
+</section>

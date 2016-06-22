@@ -1,0 +1,31 @@
+<h1>Check if the filter `join` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/join.html">
+        http://twig.sensiolabs.org/doc/filters/join.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ [1, 2, 3]|join }}</li>
+        <li>{{ [1, 2, 3]|join('-') }}</li>
+        <li>{{ [1, 2, 3]|join(seperator) }}</li>
+        <li>{{ ['a', 'b', 'c']|join }}</li>
+        <li>{{ ['a', 'b', 'c']|join('-') }}</li>
+        <li>{{ ['a', 'b', 'c']|join(seperator) }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 'string'|join }}</li>
+        <li>{{ 42|join }}</li>
+        <li>{{ (-42)|join }}</li>
+        <li>{{ 3.12|join }}</li>
+        <li>{{ (-3.12)|join }}</li>
+        <li>{{ true|join }}</li>
+        <li>{{ null|join }}</li>
+        <li>{{ {"foo": 1, "bar": 2, "list": [], "dict": [] }|join('-') }}</li>
+    </ul>
+</section>

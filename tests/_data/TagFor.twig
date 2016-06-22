@@ -1,0 +1,51 @@
+<h1>Check if the tag `for` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/tags/for.html">
+        http://twig.sensiolabs.org/doc/tags/for.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        {% for item in buying_list %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <ul>
+        {% for item in empty_list %}
+            <li>{{ item }}</li>
+        {% else %}
+            <li>This list has no items.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    {% set foo = 3 %}
+    <ul>
+        {% for item in buying_list %}
+            <li>{{ foo }}x {{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    {% for item in buying_list %}
+        {% set bar = 7 %}
+    {% endfor %}
+
+    {% if bar is defined %}
+        <p>bar is defined</p>
+    {% else %}
+        <p>bar is not defined</p>
+    {% endif %}
+
+    {% set bar = '' %}
+    {% for item in buying_list %}
+        {% set bar = item %}
+    {% endfor %}
+
+    <p>{{ bar }}</p>
+</section>

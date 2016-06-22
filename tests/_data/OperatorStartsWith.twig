@@ -1,0 +1,40 @@
+<h1>Check if the operator `starts with` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#comparisons">
+        http://twig.sensiolabs.org/doc/templates.html#comparisons
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'Linus' starts with 'L' ? 'Linus starts with L' : 'Linus starts not with L' }}</li>
+        <li>{{ 'Linus' starts with 'l' ? 'Linus starts with l' : 'Linus starts not with l' }}</li>
+        <li>{{ 'Linus' starts with 'I' ? 'Linus starts with I' : 'Linus starts not with I' }}</li>
+        <li>{{ 'Linus' starts with 'Li' ? 'Linus starts with Li' : 'Linus starts not with Li' }}</li>
+        <li>{{ 'Linus' starts with 'Id' ? 'Linus starts with Id' : 'Linus starts not with Id' }}</li>
+        <li>{{ 'Linus' starts with 'nus' ? 'Linus starts with nus' : 'Linus starts not with nus' }}</li>
+        <li>{{ 'Linus' starts with 'Linuswaytoolong' ? 'Linus starts with Linuswaytoolong' : 'Linus starts not with Linuswaytoolong' }}</li>
+        <li>{{ 'Linus' starts with '' ? 'Linus starts with an empty string' : 'Linus starts not with an empty string' }}</li>
+        <li>{{ '1' starts with true ? 'a number starts with true' : 'a number starts not with true' }}</li>
+        <li>{{ '1' starts with false ? 'a number starts with false' : 'a number starts not with false' }}</li>
+        <li>{{ '' starts with true ? 'an empty string starts with true' : 'an empty string starts not with true' }}</li>
+        <li>{{ '' starts with false ? 'an empty string starts with false' : 'an empty string starts not with false' }}</li>
+        <li>{{ 'a' starts with true ? 'a char starts with true' : 'a char starts not with true' }}</li>
+        <li>{{ 'a' starts with false ? 'a char starts with false' : 'a char starts not with false' }}</li>
+        <li>{{ true starts with '' ? 'true starts with an empty string' : 'true starts not with an empty string' }}</li>
+        <li>{{ false starts with '' ? 'false starts with an empty string' : 'false starts not with an empty string' }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 42 starts with '4' ? '42 starts with 4' : '42 starts not with 4' }}</li>
+        <li>{{ 42 starts with '8' ? '42 starts with 8' : '42 starts not with 8' }}</li>
+        <li>{{ 3.12 starts with '3' ? '3.12 starts with 3' : '3.12 starts not with 3' }}</li>
+        <li>{{ 3.12 starts with '6' ? '3.12 starts with 6' : '3.12 starts not with 6' }}</li>
+        <li>{{ true starts with '1' ? 'true starts with 1' : 'true starts not with 1' }}</li>
+        <li>{{ true starts with 't' ? 'true starts with t' : 'true starts not with t' }}</li>
+        <li>{{ [] starts with 'A' ? '[] starts with A' : '[] starts not with A' }}</li>
+    </ul>
+</section>

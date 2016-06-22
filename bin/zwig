@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+/*
+ * This file is part of Zwig.
+ *
+ * (c) Alexander Skrotzky
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed
+ * with this source code.
+ */
+
+require_once(dirname(dirname(__FILE__)) . "/vendor/autoload.php");
+
+use Zwig\Exception\InvalidParameterException;
+use Zwig\Tool\ZwigTool;
+
+
+try {
+    $tool = new ZwigTool();
+    $tool->run($argv);
+} catch (InvalidParameterException $ex) {
+    echo $ex->getMessage();
+    echo <<< HELP
+    
+    
+Usage: zwig <template directory>
+
+where <template directory>:
+    is the base directory of your templates
+
+HELP;
+} catch (Exception $ex) {
+    echo "Zwig failed with an unexpected error.";
+}

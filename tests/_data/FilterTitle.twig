@@ -1,0 +1,29 @@
+<h1>Check if the filter `title` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/title.html">
+        http://twig.sensiolabs.org/doc/filters/title.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'all lower case'|title }}</li>
+        <li>{{ 'ALL UPPER CASE'|title }}</li>
+        <li>{{ 'Mixed case'|title }}</li>
+        <li>{{ 'Camel Case'|title }}</li>
+        <li>{{ 'änderungsrichtlinie'|title }}</li>
+        <li>{{ 'abc-abc_abc.abc,abc;abc'|title }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 42|title }}</li>
+        <li>{{ (-42)|title }}</li>
+        <li>{{ 3.12|title }}</li>
+        <li>{{ (-3.12)|title }}</li>
+        <li>{{ true|title }}</li>
+        <li>{{ null|title }}</li>
+    </ul>
+</section>

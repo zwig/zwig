@@ -1,0 +1,40 @@
+<h1>Check if the operator `ends with` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#comparisons">
+        http://twig.sensiolabs.org/doc/templates.html#comparisons
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'Linus' ends with 's' ? 'Linus ends with s' : 'Linus ends not with s' }}</li>
+        <li>{{ 'Linus' ends with 'l' ? 'Linus ends with S' : 'Linus ends not with S' }}</li>
+        <li>{{ 'Linus' ends with 'L' ? 'Linus ends with L' : 'Linus ends not with L' }}</li>
+        <li>{{ 'Linus' ends with 'us' ? 'Linus ends with us' : 'Linus ends not with us' }}</li>
+        <li>{{ 'Linus' ends with 'Id' ? 'Linus ends with da' : 'Linus ends not with da' }}</li>
+        <li>{{ 'Linus' ends with 'Linu' ? 'Linus ends with Linu' : 'Linus ends not with Linu' }}</li>
+        <li>{{ 'Linus' ends with 'suniLwaytoolong' ? 'Linus ends with suniLwaytoolong' : 'Linus ends not with suniLwaytoolong' }}</li>
+        <li>{{ 'Linus' ends with '' ? 'Linus ends with an empty string' : 'Linus ends not with an empty string' }}</li>
+        <li>{{ '1' ends with true ? 'a number ends with true' : 'a number ends not with true' }}</li>
+        <li>{{ '1' ends with false ? 'a number ends with false' : 'a number ends not with false' }}</li>
+        <li>{{ '' ends with true ? 'an empty string ends with true' : 'an empty string ends not with true' }}</li>
+        <li>{{ '' ends with false ? 'an empty string ends with false' : 'an empty string ends not with false' }}</li>
+        <li>{{ 'a' ends with true ? 'a char ends with true' : 'a char ends not with true' }}</li>
+        <li>{{ 'a' ends with false ? 'a char ends with false' : 'a char ends not with false' }}</li>
+        <li>{{ true ends with '' ? 'true ends with an empty string' : 'true ends not with an empty string' }}</li>
+        <li>{{ false ends with '' ? 'false ends with an empty string' : 'false ends not with an empty string' }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 42 ends with '2' ? '42 ends with 2' : '42 ends not with 2' }}</li>
+        <li>{{ 42 ends with '8' ? '42 ends with 8' : '42 ends not with 8' }}</li>
+        <li>{{ 3.12 ends with '2' ? '3.12 ends with 2' : '3.12 ends not with 2' }}</li>
+        <li>{{ 3.12 ends with '6' ? '3.12 ends with 6' : '3.12 ends not with 6' }}</li>
+        <li>{{ true ends with '1' ? 'true ends with 1' : 'true ends not with 1' }}</li>
+        <li>{{ true ends with 'e' ? 'true ends with e' : 'true ends not with e' }}</li>
+        <li>{{ [] ends with 'A' ? '[] ends with y' : '[] ends not with y' }}</li>
+    </ul>
+</section>

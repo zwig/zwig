@@ -1,0 +1,30 @@
+<h1>Check if the operator `in` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#containment-operator">
+        http://twig.sensiolabs.org/doc/templates.html#containment-operator
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'inu' in 'Linus' ? 'inu is in Linus' : 'inu is not in Linus' }}</li>
+        <li>{{ 'Ida' in 'Linus' ? 'Ida is in Linus' : 'Ida is not in Linus' }}</li>
+        <li>{{ 'Lun' in 'Linus' ? 'Lun is in Linus' : 'Lun is not in Linus' }}</li>
+        <li>{{ 'nis' in 'Linus' ? 'nis is in Linus' : 'nis is not in Linus' }}</li>
+        <li>{{ 'Ida' not in 'Linus' ? 'Ida is not in Linus' : 'Ida is in Linus' }}</li>
+        <li>{{ 'Lun' not in 'Linus' ? 'Lun is not in Linus' : 'Lun is in Linus' }}</li>
+        <li>{{ 'nis' not in 'Linus' ? 'nis is not in Linus' : 'nis is in Linus' }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 3 in [0, 1, 2, 3, 5] ? '3 is in [0, 1, 2, 3, 5]' : '3 is not in [0, 1, 2, 3, 5]' }}</li>
+        <li>{{ 7 in [0, 1, 2, 3, 5] ? '7 is in [0, 1, 2, 3, 5]' : '7 is not in [0, 1, 2, 3, 5]' }}</li>
+        <li>{{ '3' in [0, 1, 2, 3, 5] ? '3 is in [0, 1, 2, 3, 5]' : '3 is not in [0, 1, 2, 3, 5]' }}</li>
+        <li>{{ 3 in {a: 1, b: 2, c: 3} ? '3 is in {a: 1, b: 2, c: 3}' : '3 is not in {a: 1, b: 2, c: 3}' }}</li>
+        <li>{{ 7 in {a: 1, b: 2, c: 3} ? '7 is in {a: 1, b: 2, c: 3}' : '7 is not in {a: 1, b: 2, c: 3}' }}</li>
+        <li>{{ 'a' in {a: 1, b: 2, c: 3} ? 'a is in {a: 1, b: 2, c: 3}' : 'a is not in {a: 1, b: 2, c: 3}' }}</li>
+    </ul>
+</section>

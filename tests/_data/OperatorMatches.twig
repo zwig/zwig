@@ -1,0 +1,28 @@
+<h1>Check if the operator `matches` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#comparisons">
+        http://twig.sensiolabs.org/doc/templates.html#comparisons
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'Linus' matches '/n/' ? 'Linus matches /n/' : 'Linus doesn\' match /n/' }}</li>
+        <li>{{ 'Linus' matches '/^L/' ? 'Linus matches /^L/' : 'Linus doesn\' match /^L/' }}</li>
+        <li>{{ 'Linus' matches '/^L.+s$/' ? 'Linus matches /^L.+s$/' : 'Linus doesn\' match /^L.+s$/' }}</li>
+        <li>{{ 'Linus' matches '/INU/i' ? 'Linus matches /INU/i' : 'Linus doesn\' match /INU/i' }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 42 matches '/4/' ? '42 matches /4/' : '42 doesn\' match /4/' }}</li>
+        <li>{{ 42 matches '/8/' ? '42 matches /8/' : '42 doesn\' match /8/' }}</li>
+        <li>{{ 3.12 matches '/3/' ? '3.12 matches /3/' : '3.12 doesn\' match /3/' }}</li>
+        <li>{{ 3.12 matches '/6/' ? '3.12 matches /6/' : '3.12 doesn\' match /6/' }}</li>
+        <li>{{ true matches '/1/' ? 'true matches /1/' : 'true doesn\' match /1/' }}</li>
+        <li>{{ false matches '/0/' ? 'false matches /0/' : 'false doesn\' match /0/' }}</li>
+        <li>{{ ['Linus'] matches '/us/' ? '["Linus" matches /us/' : '"Linus" doesn\' match /us/' }}</li>
+    </ul>
+</section>

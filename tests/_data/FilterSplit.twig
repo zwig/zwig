@@ -1,0 +1,117 @@
+<h1>Check if the filter `split` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/split.html">
+        http://twig.sensiolabs.org/doc/filters/split.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        {% for item in "chars"|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ') %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split('m ') %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ', 3) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ', 2) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ', -1) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ', -2) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "Lorem ipsum dolor"|split(' ', 0) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "aabbccdd"|split('') %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "aabbccdd"|split('', 2) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in "aabbccdd"|split('', -2) %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in ""|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in 42|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in 3.2|split('.') %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in true|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in null|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in [1, 2, 3]|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for item in {'a': 1, 'b': 2, 'c': 3}|split %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</section>

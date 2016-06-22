@@ -1,0 +1,28 @@
+<h1>Check if the operator `floor div` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#math">
+        http://twig.sensiolabs.org/doc/templates.html#math
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>20 // 5 = {{ 20 // 5 }}</li>
+        <li>21 // 5 = {{ 21 // 5 }}</li>
+        <li>21 // 5 // 2 = {{ 21 // 5 // 2 }}</li>
+        <li>17.5 // 3.5 = {{ 17.5 // 3.5 }}</li>
+        <li>17.5 // 1.75 = {{ 17.5 // 1.75 }}</li>
+        <li>17.5 // 1.75 // 2.5 = {{ 17.5 // 1.75 // 2.5 }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>10 // true = {{ 10 // true }}</li>
+        <li>true // 10 = {{ true // 10 }}</li>
+        <li>false // 10 = {{ false // 10 }}</li>
+        <li>a // 10 = {{ 'a' // 10 }}</li>
+        <li>null // 10 = {{ null // 10 }}</li>
+    </ul>
+</section>

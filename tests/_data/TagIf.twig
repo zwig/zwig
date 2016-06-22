@@ -1,0 +1,177 @@
+<h1>Check if the tag `if` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/tags/if.html">
+        http://twig.sensiolabs.org/doc/tags/if.html
+    </a>
+</p>
+
+<section>
+    {% if is_true %}
+        <p>is_true is true</p>
+    {% endif %}
+
+    {% if is_false %}
+        <p>is_false is true</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if answer == 42 %}
+        <p>Answer to the Ultimate Question of Life, the Universe, and Everything</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if answer != 42 %}
+        <p>answer != 42 is true</p>
+    {% else %}
+        <p>answer != 42 is false</p>
+    {% endif %}
+
+    {% if answer != 3.12 %}
+        <p>answer != 3.12 is true</p>
+    {% else %}
+        <p>answer != 3.12 is false</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if hundred < 10 %}
+        <p>hundred < 10 is true</p>
+    {% endif %}
+
+    {% if hundred < 100 %}
+        <p>hundred < 100 is true</p>
+    {% endif %}
+
+    {% if hundred < 200 %}
+        <p>hundred < 200 is true</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if hundred <= 10 %}
+        <p>hundred <= 10 is true</p>
+    {% endif %}
+
+    {% if hundred <= 100 %}
+        <p>hundred <= 100 is true</p>
+    {% endif %}
+
+    {% if hundred <= 200 %}
+        <p>hundred <= 200 is true</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if hundred > 10 %}
+        <p>hundred > 10 is true</p>
+    {% endif %}
+
+    {% if hundred > 100 %}
+        <p>hundred > 100 is true</p>
+    {% endif %}
+
+    {% if hundred > 200 %}
+        <p>hundred > 200 is true</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if hundred >= 10 %}
+        <p>hundred >= 10 is true</p>
+    {% endif %}
+
+    {% if hundred >= 100 %}
+        <p>hundred >= 100 is true</p>
+    {% endif %}
+
+    {% if hundred >= 200 %}
+        <p>hundred >= 200 is true</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if answer == 23 %}
+        <p>This will never happen... hopefully</p>
+    {% else %}
+        <p>Wrong question!</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if true and true %}
+        <p>true and true is true</p>
+    {% else %}
+        <p>true and true is false</p>
+    {% endif %}
+
+    {% if true and false %}
+        <p>true and false is true</p>
+    {% else %}
+        <p>true and false is false</p>
+    {% endif %}
+
+    {% if false and false %}
+        <p>false and false is true</p>
+    {% else %}
+        <p>false and false is false</p>
+    {% endif %}
+
+    {% if false and true %}
+        <p>false and true is true</p>
+    {% else %}
+        <p>false and true is false</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if true or true %}
+        <p>true or true is true</p>
+    {% else %}
+        <p>true or true is false</p>
+    {% endif %}
+
+    {% if true or false %}
+        <p>true or false is true</p>
+    {% else %}
+        <p>true or false is false</p>
+    {% endif %}
+
+    {% if false or false %}
+        <p>false or false is true</p>
+    {% else %}
+        <p>false or false is false</p>
+    {% endif %}
+
+    {% if false or true %}
+        <p>false or true is true</p>
+    {% else %}
+        <p>false or true is false</p>
+    {% endif %}
+</section>
+
+<section>
+    {% if true %}
+        <p>{{ hundred }}</p>
+    {% endif %}
+
+    {% if true %}
+        {% set inner = 42 %}
+    {% endif %}
+
+    {% if inner is defined %}
+        <p>inner is defined</p>
+    {% else %}
+        <p>inner is not defined</p>
+    {% endif %}
+
+    {% set outer = 13 %}
+
+    {% if true %}
+        {% set outer = 42 %}
+    {% endif %}
+
+    <p>{{ outer }}</p>
+</section>

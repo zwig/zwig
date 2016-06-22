@@ -1,0 +1,26 @@
+<h1>Check if the filter `escape` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/escape.html">
+        http://twig.sensiolabs.org/doc/filters/escape.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ text_plain }}</li>
+        <li>{{ text_utf8_1 }}</li>
+        <li>{{ text_utf8_2 }}</li>
+        <li>{{ text_newlines }}</li>
+        <li>{{ text_html_1 }}</li>
+        <li>{{ text_html_2 }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ text_html_1|e }}</li>
+    </ul>
+
+    {{ paragraph|raw }}
+</section>

@@ -1,0 +1,33 @@
+<h1>Check if the operator `add` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#math">
+        http://twig.sensiolabs.org/doc/templates.html#math
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 21 + 21 }}</li>
+        <li>{{ -21 + -21 }}</li>
+        <li>{{ 10 + 14 + 18 }}</li>
+        <li>{{ -10 + -14 + -18 }}</li>
+        <li>{{ 1.5 + 2.75 }}</li>
+        <li>{{ -2.5 + -2.5 }}</li>
+        <li>{{ 1.5 + 2.75 + 1.2 }}</li>
+        <li>{{ -2.5 + -2.75 + -1.2 }}</li>
+    </ul>
+</section>
+
+<section>
+    <ul>
+        <li>{{ 13 + true }}</li>
+        <li>{{ true + 13 }}</li>
+        <li>{{ 13 + false }}</li>
+        <li>{{ false + 13 }}</li>
+        <li>{{ 13 + 'a' }}</li>
+        <li>{{ 'a' + 13 }}</li>
+        <li>{{ 13 + null }}</li>
+        <li>{{ null + 13 }}</li>
+    </ul>
+</section>

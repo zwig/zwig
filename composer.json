@@ -1,0 +1,34 @@
+{
+    "name": "zwig/zwig",
+    "type": "library",
+    "description": "Zwig converts Twig templates into executable JavaScript",
+    "keywords": [
+        "templating"
+    ],
+    "homepage": "https://github.com/zwig/zwig/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Skrotzky",
+            "email": "alex@tytoninae.de",
+            "role": "Project Founder"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "twig/twig": "~1.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.1",
+        "codeception/phpbuiltinserver": "^1.2",
+        "site5/phantoman": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zwig\\": "lib/Zwig"
+        }
+    },
+    "bin": [
+        "bin/zwig"
+    ]
+}

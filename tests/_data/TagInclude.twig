@@ -1,0 +1,52 @@
+<h1>Check if the tag `include` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/tags/include.html">
+        http://twig.sensiolabs.org/doc/tags/include.html
+    </a>
+</p>
+
+<section>
+    {% include 'TagIncludeParagraph.twig' %}
+</section>
+
+<section>
+    {% include 'TagIncludeGetVariables.twig' %}
+</section>
+
+<section>
+    {% include 'TagIncludeSetVariables.twig' %}
+    {% include 'TagIncludeGetVariables.twig' %}
+
+    {% if text is defined %}
+        <p>Text is defined outside.</p>
+    {% else %}
+        <p>Text is not defined outside.</p>
+    {% endif %}
+</section>
+
+<section>
+    {% include 'TagIncludeGetVariables.twig' with {"name": "Albert Einstein"} %}
+</section>
+
+<section>
+    {% set not_visible = true %}
+    {% include 'TagIncludeOnly.twig' with {"visible": true} only %}
+</section>
+
+<section>
+    {% include 'TagIncludeDoesntExist.twig' ignore missing %}
+</section>
+
+<section>
+    {% set template = 'TagIncludeParagraph.twig' %}
+    {% include template %}
+
+    {% include 'TagIncludeParagraph' ~ '.twig' %}
+
+    {% include name == 'Jon Doe' ? 'TagIncludeParagraph.twig' : 'TagIncludeGetVariables.twig' %}
+</section>
+
+<section>
+    {% include ['TagIncludeDoesntExist.twig', 'TagIncludeParagraph.twig'] %}
+</section>

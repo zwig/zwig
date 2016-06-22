@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello - Zwig Example</title>
+    <script src="../dist/zwig.js"></script>
+    <script src="../examples/hello.js"></script>
+</head>
+<body>
+    <h1 id="output">Hello Zwig</h1>
+    <form name="greetings">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"/>
+        <input type="button" id="button" value="submit"/>
+    </form>
+
+    <script>
+        var button = document.getElementById('button');
+        var output = document.getElementById('output');
+
+        button.addEventListener('click', function () {
+            output.innerHTML = Zwig.render('hello.twig', {
+                name: document.greetings.name.value
+            });
+        });
+    </script>
+</body>
+</html>
