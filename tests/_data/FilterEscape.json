@@ -1,7 +1,5 @@
 {
     "text_plain": "This is a simple text.",
-    "text_utf8_1": "Xaver schreibt für Wikipedia zum Spaß quälend lang über Yoga, Soja und Öko.",
-    "text_utf8_2": "東京へようこそ",
     "text_newlines": "Hello world!\\nHow are you?",
     "text_html_1": "<strong>Argument</strong>",
     "text_html_2": "<span id=\"foo\" class='bar'></span>",

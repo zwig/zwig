@@ -74,8 +74,12 @@ class DisplayTool
      */
     private function getContext($path)
     {
+        if (!is_file($path)) {
+            return [];
+        }
+
         try {
-            $context = json_decode(file_get_contents($path), true);
+            $context = json_decode(mb_convert_encoding(file_get_contents($path), 'UTF-8'), true);
         } catch (\Exception $ex) {
             return [];
         }
@@ -118,6 +122,7 @@ class DisplayTool
 
         $html = "<html>"
             . "  <head>"
+            . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
             . "    <script src='/dist/zwig.js'></script>"
             . "    <script>{$source}</script>"
             . "    <script>"

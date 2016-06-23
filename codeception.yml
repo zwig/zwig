@@ -22,7 +22,7 @@ extensions:
             documentRoot: .
             startDelay: 1p
         Codeception\Extension\Phantoman:
-            path: '/usr/bin/phantomjs'
+            path: 'phantomjs'
             port: 4444
             suites: ['acceptance']
             silent: true
