@@ -2,6 +2,7 @@ README
 ======
 
 [![Build Status](https://img.shields.io/travis/zwig/zwig.svg)](https://travis-ci.org/zwig/zwig)
+[![Code Quality](https://img.shields.io/codeclimate/github/zwig/zwig.svg)](https://codeclimate.com/github/zwig/zwig)
 [![Latest Version](https://img.shields.io/packagist/v/zwig/zwig.svg)](https://packagist.org/packages/zwig/zwig)
 [![Software License](https://img.shields.io/packagist/l/zwig/zwig.svg)](LICENSE)
 
