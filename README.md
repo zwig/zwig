@@ -1,10 +1,14 @@
 README
 ======
 
+[![Build Status](https://img.shields.io/travis/zwig/zwig.svg)](https://travis-ci.org/zwig/zwig)
+[![Latest Version](https://img.shields.io/packagist/v/zwig/zwig.svg)](https://packagist.org/packages/zwig/zwig)
+[![Software License](https://img.shields.io/packagist/l/zwig/zwig.svg)](LICENSE)
+
 What is Zwig?
 -------------
 
-Zwig is a toolkit that uses Twig to convert [Twig templates][1] into executable JavaScript,
+Zwig is a toolkit that uses Twig to convert [Twig templates][1] into JavaScript,
 so that they can be used for client-side rendering within any modern browser.
 
 Zwig has the following goals:
