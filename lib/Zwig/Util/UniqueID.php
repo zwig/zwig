@@ -58,15 +58,15 @@ abstract class UniqueID
     private static function getRandomIdentifier($length = 32)
     {
         $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        $alphabet_max = strlen($alphabet) - 1;
+        $alphabetMax = strlen($alphabet) - 1;
 
         $identifier = '';
         while (strlen($identifier) < $length) {
             // The function random_int was added in PHP 7.0
             if (function_exists('random_int')) {
-                $random = random_int(0, $alphabet_max);
+                $random = random_int(0, $alphabetMax);
             } else {
-                $random = mt_rand(0, $alphabet_max);
+                $random = mt_rand(0, $alphabetMax);
             }
 
             $identifier .= $alphabet[$random];

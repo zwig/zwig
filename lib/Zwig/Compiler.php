@@ -77,18 +77,6 @@ class Compiler
         return self::$compilers[$nodeClassName]->compile($node);
     }
 
-    /**
-     * @param Segment[] $commands
-     */
-    private function combineCommands(array &$commands)
-    {
-        for ($i = count($commands) - 1; $i > 0; $i--) {
-            if ($commands[$i - 1]->combine($commands[$i])) {
-                unset($commands[$i]);
-            }
-        }
-    }
-
     private static function initCompilers()
     {
         if (!self::$compilers) {

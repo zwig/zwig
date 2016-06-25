@@ -18,6 +18,10 @@ function isNull(value) {
     return value !== undefined && value == undefined; // eslint-disable-line
 }
 
+function numberify(value) {
+    return (isNaN(value) ? 0 : Number(value));
+}
+
 function stringify(value) {
     if (isNull(value) || typeof value === 'object') {
         value = '';
@@ -144,7 +148,7 @@ function getTemplateIdentifier(filename) {
 }
 
 Operators.add = function zwigOperatorAdd(lhs, rhs) {
-    return (isNaN(lhs) ? 0 : Number(lhs)) + (isNaN(rhs) ? 0 : Number(rhs));
+    return numberify(lhs) + numberify(rhs);
 };
 
 Operators.concat = function zwigOperatorConcat(lhs, rhs) {
@@ -156,35 +160,8 @@ function concatParamToString(value) {
 }
 
 Operators.div = function zwigOperatorDiv(lhs, rhs) {
-    return (isNaN(lhs) ? 0 : Number(lhs)) / (isNaN(rhs) ? 0 : Number(rhs));
+    return numberify(lhs) / numberify(rhs);
 };
-
-Operators.endsWith = function zwigOperatorEndsWith(lhs, rhs) {
-    if (typeof lhs !== 'string' || typeof rhs !== 'string') {
-        return false;
-    }
-
-    // use the native function if available
-    if (typeof lhs.endsWith !== 'undefined') {
-        return lhs.endsWith(rhs);
-    }
-
-    return endsWithPolyFill(lhs, rhs);
-};
-
-function endsWithPolyFill(haystack, needle) {
-    if (haystack.length < needle.length) {
-        return false;
-    }
-
-    for (var i = 1; i <= needle.length; i++) {
-        if (haystack[haystack.length - i] !== needle[needle.length - i]) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 Operators.floordiv = function zwigOperatorFloorDiv(lhs, rhs) {
     return Math.floor(Operators.div(lhs, rhs));
@@ -247,7 +224,7 @@ Operators.mod = function zwigOperatorMod(lhs, rhs) {
 };
 
 Operators.mul = function zwigOperatorMul(lhs, rhs) {
-    return (isNaN(lhs) ? 0 : Number(lhs)) * (isNaN(rhs) ? 0 : Number(rhs));
+    return numberify(lhs) * numberify(rhs);
 };
 
 Operators.power = function zwigOperatorPower(lhs, rhs) {
@@ -274,21 +251,18 @@ Operators.range = function zwigOperatorRange(lhs, rhs) {
     return list;
 };
 
-function rangeDownwards(lhs, rhs) {
-    var list = [];
-    for (var i = lhs; i >= rhs; i--) {
-        list.push(i);
-    }
-
-    return list;
-}
-
 function rangeUpwards(lhs, rhs) {
     var list = [];
     for (var i = lhs; i <= rhs; i++) {
         list.push(i);
     }
 
+    return list;
+}
+
+function rangeDownwards(lhs, rhs) {
+    var list = rangeUpwards(rhs, lhs);
+    list.reverse();
     return list;
 }
 
@@ -301,17 +275,25 @@ function rangeCharList(list) {
 }
 
 Operators.startsWith = function zwigOperatorStartsWith(haystack, needle) {
+    return checkStringBoundaries(haystack, needle, 'startsWith', startsWithPolyFill);
+};
+
+Operators.endsWith = function zwigOperatorEndsWith(haystack, needle) {
+    return checkStringBoundaries(haystack, needle, 'endsWith', endsWithPolyFill);
+};
+
+function checkStringBoundaries(haystack, needle, nativeName, polyFill) {
     if (typeof haystack !== 'string' || typeof needle !== 'string') {
         return false;
     }
 
     // use the native function if available
-    if (typeof haystack.startsWith !== 'undefined') {
-        return haystack.startsWith(needle);
+    if (typeof haystack[nativeName] !== 'undefined') {
+        return haystack[nativeName](needle);
     }
 
-    return startsWithPolyFill(haystack, needle);
-};
+    return polyFill(haystack, needle);
+}
 
 function startsWithPolyFill(haystack, needle) {
     if (haystack.length < needle.length) {
@@ -327,8 +309,22 @@ function startsWithPolyFill(haystack, needle) {
     return true;
 }
 
+function endsWithPolyFill(haystack, needle) {
+    if (haystack.length < needle.length) {
+        return false;
+    }
+
+    for (var i = 1; i <= needle.length; i++) {
+        if (haystack[haystack.length - i] !== needle[needle.length - i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 Operators.sub = function zwigOperatorSub(lhs, rhs) {
-    return (isNaN(lhs) ? 0 : Number(lhs)) - (isNaN(rhs) ? 0 : Number(rhs));
+    return numberify(lhs) - numberify(rhs);
 };
 
 Filters.abs = function zwigFilterAbs(value) {
