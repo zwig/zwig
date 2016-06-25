@@ -11,7 +11,7 @@
 (function(){
 var Zwig = window.Zwig = {};
 var Templates = Zwig.Templates = {};
-var Functions = Zwig.Functions = {};
+var Operators = Zwig.Operators = {};
 var Filters = Zwig.Filters = {};
 
 function isNull(value) {
@@ -143,15 +143,23 @@ function getTemplateIdentifier(filename) {
     return filename.replace(/([^\w/\\])/, '').replace(/([/\\])/, '__');
 }
 
-Functions.add = function zwigFunctionAdd(lhs, rhs) {
+Operators.add = function zwigOperatorAdd(lhs, rhs) {
     return (isNaN(lhs) ? 0 : Number(lhs)) + (isNaN(rhs) ? 0 : Number(rhs));
 };
 
-Functions.div = function zwigFunctionDiv(lhs, rhs) {
+Operators.concat = function zwigOperatorConcat(lhs, rhs) {
+    return concatParamToString(lhs) + concatParamToString(rhs);
+};
+
+function concatParamToString(value) {
+    return typeof value === 'object' && !isNull(value)? 'Array' : stringify(value);
+}
+
+Operators.div = function zwigOperatorDiv(lhs, rhs) {
     return (isNaN(lhs) ? 0 : Number(lhs)) / (isNaN(rhs) ? 0 : Number(rhs));
 };
 
-Functions.endsWith = function zwigFunctionEndsWith(lhs, rhs) {
+Operators.endsWith = function zwigOperatorEndsWith(lhs, rhs) {
     if (typeof lhs !== 'string' || typeof rhs !== 'string') {
         return false;
     }
@@ -178,11 +186,11 @@ function endsWithPolyFill(haystack, needle) {
     return true;
 }
 
-Functions.floordiv = function zwigFunctionFloorDiv(lhs, rhs) {
-    return Math.floor(Functions.div(lhs, rhs));
+Operators.floordiv = function zwigOperatorFloorDiv(lhs, rhs) {
+    return Math.floor(Operators.div(lhs, rhs));
 };
 
-Functions.in = function zwigFunctionIn(needle, haystack) {
+Operators.in = function zwigOperatorIn(needle, haystack) {
     if (typeof haystack === 'string') {
         return inString(haystack, needle);
     }
@@ -220,7 +228,7 @@ function inList(haystack, needle) {
     return false;
 }
 
-Functions.matches = function zwigFunctionMatches(value, expr) {
+Operators.matches = function zwigOperatorMatches(value, expr) {
     if (typeof value === 'object') {
         return false;
     }
@@ -234,22 +242,22 @@ Functions.matches = function zwigFunctionMatches(value, expr) {
     return value.match(new RegExp(regex, option));
 };
 
-Functions.mod = function zwigFunctionMod(lhs, rhs) {
+Operators.mod = function zwigOperatorMod(lhs, rhs) {
     return (isNaN(lhs) ? 0 : Math.floor(lhs)) % (isNaN(rhs) ? 0 : Math.floor(rhs));
 };
 
-Functions.mul = function zwigFunctionMul(lhs, rhs) {
+Operators.mul = function zwigOperatorMul(lhs, rhs) {
     return (isNaN(lhs) ? 0 : Number(lhs)) * (isNaN(rhs) ? 0 : Number(rhs));
 };
 
-Functions.power = function zwigFunctionPower(lhs, rhs) {
+Operators.power = function zwigOperatorPower(lhs, rhs) {
     return Math.pow(
         isNaN(lhs) ? 0 : Number(lhs),
         isNaN(rhs) ? 0 : Number(rhs)
     );
 };
 
-Functions.range = function zwigFunctionRange(lhs, rhs) {
+Operators.range = function zwigOperatorRange(lhs, rhs) {
     var isString = typeof lhs === 'string';
 
     if (isString) {
@@ -292,7 +300,7 @@ function rangeCharList(list) {
     return list;
 }
 
-Functions.startsWith = function zwigFunctionStartsWith(haystack, needle) {
+Operators.startsWith = function zwigOperatorStartsWith(haystack, needle) {
     if (typeof haystack !== 'string' || typeof needle !== 'string') {
         return false;
     }
@@ -319,7 +327,7 @@ function startsWithPolyFill(haystack, needle) {
     return true;
 }
 
-Functions.sub = function zwigFunctionSub(lhs, rhs) {
+Operators.sub = function zwigOperatorSub(lhs, rhs) {
     return (isNaN(lhs) ? 0 : Number(lhs)) - (isNaN(rhs) ? 0 : Number(rhs));
 };
 

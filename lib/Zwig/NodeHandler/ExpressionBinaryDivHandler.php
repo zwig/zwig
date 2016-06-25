@@ -33,7 +33,7 @@ class ExpressionBinaryDivHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.div(%s, %s)', [
+        return new Segment('operators.div(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

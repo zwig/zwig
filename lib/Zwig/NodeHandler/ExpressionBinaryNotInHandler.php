@@ -33,7 +33,7 @@ class ExpressionBinaryNotInHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('!functions.in(%s, %s)', [
+        return new Segment('!operators.in(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

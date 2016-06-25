@@ -33,7 +33,7 @@ class ExpressionBinaryMulHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.mul(%s, %s)', [
+        return new Segment('operators.mul(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

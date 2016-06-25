@@ -33,7 +33,7 @@ class ExpressionBinaryModHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.mod(%s, %s)', [
+        return new Segment('operators.mod(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

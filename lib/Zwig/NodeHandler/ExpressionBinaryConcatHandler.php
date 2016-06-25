@@ -33,7 +33,7 @@ class ExpressionBinaryConcatHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.concat(%s, %s)', [
+        return new Segment('operators.concat(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right'),
         ]);

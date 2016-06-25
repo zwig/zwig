@@ -33,7 +33,7 @@ class ExpressionBinaryFloorDivHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.floordiv(%s, %s)', [
+        return new Segment('operators.floordiv(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

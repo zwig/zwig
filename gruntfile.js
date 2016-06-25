@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         "lib/Client/_helpers.js",
         "lib/Client/context.js",
         "lib/Client/render.js",
-        "lib/Client/functions/**.js",
+        "lib/Client/operators/**.js",
         "lib/Client/filters/**.js"
     ];
 
