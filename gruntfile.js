@@ -11,8 +11,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
 
-        jshint: {
-            files: sources
+        eslint: {
+            sources: [sources]
         },
 
         concat: {
@@ -58,10 +58,10 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-eslint");
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-watch");
 
-    grunt.registerTask("default", ["jshint", "concat", "uglify"]);
+    grunt.registerTask("default", ["eslint", "concat", "uglify"]);
 };

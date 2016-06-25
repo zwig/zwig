@@ -1,18 +1,18 @@
 {
-    "name": "zwig",
-    "version": "0.1.0",
-    "description": "Zwig converts Twig templates into executable JavaScript",
-    "author": "Alexander Skrotzky",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/zwig/zwig.git"
-    },
-    "devDependencies": {
-        "grunt": "^1.0.1",
-        "grunt-contrib-concat": "^1.0.1",
-        "grunt-contrib-jshint": "^1.0.0",
-        "grunt-contrib-uglify": "^1.0.1",
-        "grunt-contrib-watch": "^1.0.0"
-    }
+  "name": "zwig",
+  "version": "0.1.0",
+  "description": "Zwig converts Twig templates into executable JavaScript",
+  "author": "Alexander Skrotzky",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zwig/zwig.git"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^18.1.0"
+  }
 }
