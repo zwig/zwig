@@ -64,7 +64,7 @@ Filters
 | split                 | complete      |                                                                                 |
 | striptags             | missing       |                                                                                 |
 | title                 | working       |                                                                                 |
-| trim                  | partial       | Tests need some improvement.                                                    |
+| trim                  | complete      |                                                                                 |
 | upper                 | missing       |                                                                                 |
 | url_encode            | missing       |                                                                                 |
 | custom                | missing       |                                                                                 |
@@ -105,7 +105,7 @@ Operators
 | Math                  | complete      |                                                                                 |
 | Logic                 | partial       | Tests need some improvement. b-and, b-xor, b-or and not have yet to be added.   |
 | Comparisons           | complete      |                                                                                 |
-| Others                | missing       |                                                                                 |
+| Others                | complete      |                                                                                 |
 
 
 

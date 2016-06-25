@@ -36,7 +36,7 @@ Convert templates:
 ```
 
 Start using them:
-```
+```html
 <!DOCTYPE html>
 <html>
     <body>
