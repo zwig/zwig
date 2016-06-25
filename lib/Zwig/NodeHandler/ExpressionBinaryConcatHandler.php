@@ -21,7 +21,7 @@ use Zwig\Sequence\Segment;
  * Compiles a node that concat the values of two nodes.
  * @see http://twig.sensiolabs.org/doc/templates.html#other-operators
  */
-class ExpressionBinaryConcatHandler extends AbstractExpressionBinaryHandler
+class ExpressionBinaryConcatHandler extends AbstractHandler
 {
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Binary_Concat';
 
@@ -33,6 +33,9 @@ class ExpressionBinaryConcatHandler extends AbstractExpressionBinaryHandler
      */
     public function compile(Twig_Node $node)
     {
-        return self::compileBinary($node, '+');
+        return new Segment('functions.concat(%s, %s)', [
+            $this->getCompiledNode($node, 'left'),
+            $this->getCompiledNode($node, 'right'),
+        ]);
     }
 }

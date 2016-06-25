@@ -1,0 +1,25 @@
+<h1>Check if the operator `concatenate` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/templates.html#other-operators">
+        http://twig.sensiolabs.org/doc/templates.html#other-operators
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ '123' ~ '456' }}</li>
+        <li>{{ '123' ~ 456 }}</li>
+        <li>{{ 123 ~ '456' }}</li>
+        <li>{{ '123' ~ 4.56 }}</li>
+        <li>{{ 1.23 ~ '456' }}</li>
+        <li>{{ '123' ~ true }}</li>
+        <li>{{ true ~ '456' }}</li>
+        <li>{{ '123' ~ false }}</li>
+        <li>{{ false ~ '456' }}</li>
+        <li>{{ '123' ~ null }}</li>
+        <li>{{ null ~ '456' }}</li>
+        <li>{{ '123' ~ [4, 5, 6] }}</li>
+        <li>{{ [1, 2, 3] ~ '456' }}</li>
+    </ul>
+</section>
