@@ -15,15 +15,15 @@ var Functions = Zwig.Functions = {};
 var Filters = Zwig.Filters = {};
 
 function isNull(value) {
-    return value !== undefined && value == undefined; // jshint ignore:line
+    return value !== undefined && value == undefined; // eslint-disable-line
 }
 
 function stringify(value) {
-    if (isNull(value) || typeof value == 'object') {
+    if (isNull(value) || typeof value === 'object') {
         value = '';
-    } else if (typeof value == 'boolean') {
+    } else if (typeof value === 'boolean') {
         value = value ? '1' : '';
-    } else if (typeof value != 'string') {
+    } else if (typeof value !== 'string') {
         value = String(value);
     }
 
@@ -98,7 +98,7 @@ Context.prototype.fill = function contextFill(data) {
 };
 
 Zwig.render = function zwigRenderTemplate(filename, data, context, ignore_missing) {
-    if (typeof context == 'undefined') {
+    if (typeof context === 'undefined') {
         context = new Context(data);
     } else {
         context = context.clone();
@@ -107,7 +107,7 @@ Zwig.render = function zwigRenderTemplate(filename, data, context, ignore_missin
 
     var identifier = findTemplate(filename);
     if (!identifier) {
-        if (typeof ignore_missing == 'undefined' || !ignore_missing) {
+        if (typeof ignore_missing === 'undefined' || !ignore_missing) {
             return 'Unable to find template &quot;' + filename + '&quot;.';
         } else {
             return '';
@@ -120,7 +120,7 @@ Zwig.render = function zwigRenderTemplate(filename, data, context, ignore_missin
 function findTemplate(filename) {
     var identifier;
 
-    if (typeof filename == 'object') {
+    if (typeof filename === 'object') {
         for (var i = 0; i < filename.length; i++) {
             identifier = getTemplateIdentifier(filename[i]);
             if (identifier in Templates) {
@@ -152,12 +152,12 @@ Functions.div = function zwigFunctionDiv(lhs, rhs) {
 };
 
 Functions.endsWith = function zwigFunctionEndsWith(lhs, rhs) {
-    if (typeof lhs != 'string' || typeof rhs != 'string') {
+    if (typeof lhs !== 'string' || typeof rhs !== 'string') {
         return false;
     }
 
     // use the native function if available
-    if (typeof lhs.endsWith != 'undefined') {
+    if (typeof lhs.endsWith !== 'undefined') {
         return lhs.endsWith(rhs);
     }
 
@@ -170,7 +170,7 @@ function endsWithPolyFill(haystack, needle) {
     }
 
     for (var i = 1; i <= needle.length; i++) {
-        if (haystack[haystack.length - i] != needle[needle.length - i]) {
+        if (haystack[haystack.length - i] !== needle[needle.length - i]) {
             return false;
         }
     }
@@ -183,11 +183,11 @@ Functions.floordiv = function zwigFunctionFloorDiv(lhs, rhs) {
 };
 
 Functions.in = function zwigFunctionIn(needle, haystack) {
-    if (typeof haystack == 'string') {
+    if (typeof haystack === 'string') {
         return inString(haystack, needle);
     }
 
-    if (typeof haystack.length == 'undefined') {
+    if (typeof haystack.length === 'undefined') {
         return inObject(haystack, needle);
     }
 
@@ -201,7 +201,7 @@ function inString(haystack, needle) {
 function inObject(haystack, needle) {
     for (var key in haystack) {
         if (haystack.hasOwnProperty(key)) {
-            if (haystack[key] == needle) {
+            if (haystack[key] == needle) { // eslint-disable-line
                 return true;
             }
         }
@@ -212,7 +212,7 @@ function inObject(haystack, needle) {
 
 function inList(haystack, needle) {
     for (var i = 0; i < haystack.length; i++) {
-        if (haystack[i] == needle) {
+        if (haystack[i] == needle) { // eslint-disable-line
             return true;
         }
     }
@@ -221,7 +221,7 @@ function inList(haystack, needle) {
 }
 
 Functions.matches = function zwigFunctionMatches(value, expr) {
-    if (typeof value == 'object') {
+    if (typeof value === 'object') {
         return false;
     }
 
@@ -250,7 +250,7 @@ Functions.power = function zwigFunctionPower(lhs, rhs) {
 };
 
 Functions.range = function zwigFunctionRange(lhs, rhs) {
-    var isString = typeof lhs == 'string';
+    var isString = typeof lhs === 'string';
 
     if (isString) {
         lhs = lhs.charCodeAt(0);
@@ -293,12 +293,12 @@ function rangeCharList(list) {
 }
 
 Functions.startsWith = function zwigFunctionStartsWith(haystack, needle) {
-    if (typeof haystack != 'string' || typeof needle != 'string') {
+    if (typeof haystack !== 'string' || typeof needle !== 'string') {
         return false;
     }
 
     // use the native function if available
-    if (typeof haystack.startsWith != 'undefined') {
+    if (typeof haystack.startsWith !== 'undefined') {
         return haystack.startsWith(needle);
     }
 
@@ -311,7 +311,7 @@ function startsWithPolyFill(haystack, needle) {
     }
 
     for (var i = 0; i < needle.length; i++) {
-        if (haystack[i] != needle[i]) {
+        if (haystack[i] !== needle[i]) {
             return false;
         }
     }
@@ -324,11 +324,11 @@ Functions.sub = function zwigFunctionSub(lhs, rhs) {
 };
 
 Filters.abs = function zwigFilterAbs(value) {
-    if (typeof value == 'number' || typeof value == 'boolean') {
+    if (typeof value === 'number' || typeof value === 'boolean') {
         return Math.abs(value);
     }
 
-    if (typeof(value) == 'object' && !isNull(value)) {
+    if (typeof(value) === 'object' && !isNull(value)) {
         return '';
     }
 
@@ -361,11 +361,11 @@ Filters.escape = zwigFilterEscape;
 Filters.e = zwigFilterEscape;
 
 Filters.join = function zwigFilterJoin(value, glue) {
-    if (typeof glue == 'undefined') {
+    if (typeof glue === 'undefined') {
         glue = '';
     }
 
-    if (typeof value != 'object' || isNull(value)) {
+    if (typeof value !== 'object' || isNull(value)) {
         return stringify(value);
     }
 
@@ -380,7 +380,7 @@ function joinObject(value, glue) {
     var parts = [];
     for (var key in value) {
         if (value.hasOwnProperty(key)) {
-            if (typeof value[key] == 'object') {
+            if (typeof value[key] === 'object') {
                 parts.push('Array');
             } else {
                 parts.push(value[key]);
@@ -396,7 +396,7 @@ Filters.nl2br = function zwigFilterNl2br(value) {
 };
 
 Filters.split = function zwigFilterSplit(value, separator, limit) {
-    if (typeof separator == 'undefined') {
+    if (typeof separator === 'undefined') {
         separator = '';
     }
 
@@ -413,10 +413,14 @@ Filters.split = function zwigFilterSplit(value, separator, limit) {
     value = stringify(value);
 
     // We can use the vanilla split method when no limit is specified.
-    if (typeof limit == 'undefined') {
+    if (typeof limit === 'undefined') {
         return value.split(separator);
     }
 
+    return splitWithLimit(value, separator, limit);
+};
+
+function splitWithLimit(value, separator, limit) {
     // The PHP explode function has a lot of exceptions.
     // Like the handling when using an empty separator.
     // See http://php.net/explode
@@ -429,7 +433,7 @@ Filters.split = function zwigFilterSplit(value, separator, limit) {
     } else {
         return splitWithNegativeLimit(value, separator, limit);
     }
-};
+}
 
 function splitWithPositiveLimit(value, separator, limit) {
     var segments = value.split(separator, limit);
@@ -472,7 +476,7 @@ Filters.title = function zwigFilterTitle(value) {
 Filters.trim = function zwigFilterTrim(value, search) {
     value = stringify(value);
 
-    if (typeof search == 'undefined') {
+    if (typeof search === 'undefined') {
         search = '\\s';
     }
 
