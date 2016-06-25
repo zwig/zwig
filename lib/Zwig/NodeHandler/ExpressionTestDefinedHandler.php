@@ -33,7 +33,7 @@ class ExpressionTestDefinedHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('typeof %s != "undefined" ? 1 : ""', [
+        return new Segment('%s !== undefined', [
             $this->getCompiledNode($node, 'node')
         ]);
     }

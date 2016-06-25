@@ -33,7 +33,7 @@ class ExpressionBinaryStartsWith extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.startsWith(%s, %s)', [
+        return new Segment('operators.startsWith(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

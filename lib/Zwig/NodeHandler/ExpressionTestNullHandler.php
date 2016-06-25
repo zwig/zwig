@@ -18,12 +18,12 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a node that creates a range between two values.
+ * Compiles a node that returns the value of a defined variable or a placeholder otherwise.
  * @see http://twig.sensiolabs.org/doc/templates.html#other-operators
  */
-class ExpressionBinaryRangeHandler extends AbstractHandler
+class ExpressionTestNullHandler extends AbstractHandler
 {
-    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Binary_Range';
+    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Null';
 
     /**
      * @param Twig_Node $node
@@ -33,9 +33,9 @@ class ExpressionBinaryRangeHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('operators.range(%s, %s)', [
-            $this->getCompiledNode($node, 'left'),
-            $this->getCompiledNode($node, 'right')
+        return new Segment('context.get(%s) !== undefined', [
+            $this->getCompiledNode($node, 'node'),
+            $this->getCompiledNode($node, 'node'),
         ]);
     }
 }

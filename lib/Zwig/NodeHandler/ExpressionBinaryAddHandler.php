@@ -33,7 +33,7 @@ class ExpressionBinaryAddHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.add(%s, %s)', [
+        return new Segment('operators.add(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

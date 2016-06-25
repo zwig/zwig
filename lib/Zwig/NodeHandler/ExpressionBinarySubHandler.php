@@ -33,7 +33,7 @@ class ExpressionBinarySubHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.sub(%s, %s)', [
+        return new Segment('operators.sub(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

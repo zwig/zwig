@@ -33,7 +33,7 @@ class ExpressionBinaryMatches extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.matches(%s, %s)', [
+        return new Segment('operators.matches(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

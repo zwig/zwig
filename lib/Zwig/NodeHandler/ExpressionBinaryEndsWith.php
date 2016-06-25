@@ -33,7 +33,7 @@ class ExpressionBinaryEndsWith extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.endsWith(%s, %s)', [
+        return new Segment('operators.endsWith(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);

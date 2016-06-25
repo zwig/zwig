@@ -33,7 +33,7 @@ class ExpressionBinaryPowerHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('functions.power(%s, %s)', [
+        return new Segment('operators.power(%s, %s)', [
             $this->getCompiledNode($node, 'left'),
             $this->getCompiledNode($node, 'right')
         ]);
