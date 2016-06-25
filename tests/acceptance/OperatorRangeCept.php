@@ -1,5 +1,5 @@
 <?php
-$template = 'OperatorDotDot.twig';
+$template = 'OperatorRange.twig';
 $includes = [];
 
 $I = new AcceptanceTester($scenario);
