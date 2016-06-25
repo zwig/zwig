@@ -1,4 +1,4 @@
-<h1>Check if the operator `?` is working properly</h1>
+<h1>Check if the operator `??` is working properly</h1>
 
 <p>
     See <a href="http://twig.sensiolabs.org/doc/templates.html#other-operators">
@@ -8,7 +8,7 @@
 
 <section>
     <ul>
-        <li>{{ true ? 'true' : 'false' }}</li>
-        <li>{{ false ? 'true' : 'false' }}</li>
+        <li>{{ defined_variable ?? 'undefined' }}</li>
+        <li>{{ undefined_variable ?? 'undefined' }}</li>
     </ul>
 </section>

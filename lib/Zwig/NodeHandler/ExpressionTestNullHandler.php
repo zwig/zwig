@@ -18,12 +18,12 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a node that checks if a variable is defined.
- * @see http://twig.sensiolabs.org/doc/tests/defined.html
+ * Compiles a node that returns the value of a defined variable or a placeholder otherwise.
+ * @see http://twig.sensiolabs.org/doc/templates.html#other-operators
  */
-class ExpressionTestDefinedHandler extends AbstractHandler
+class ExpressionTestNullHandler extends AbstractHandler
 {
-    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Defined';
+    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Null';
 
     /**
      * @param Twig_Node $node
@@ -33,8 +33,9 @@ class ExpressionTestDefinedHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        return new Segment('%s !== undefined', [
-            $this->getCompiledNode($node, 'node')
+        return new Segment('context.get(%s) !== undefined', [
+            $this->getCompiledNode($node, 'node'),
+            $this->getCompiledNode($node, 'node'),
         ]);
     }
 }
