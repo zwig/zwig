@@ -62,16 +62,24 @@ class UniqueID
 
         $identifier = '';
         while (strlen($identifier) < $length) {
-            // The function random_int was added in PHP 7.0
-            if (function_exists('random_int')) {
-                $random = random_int(0, $alphabetMax);
-            } else {
-                $random = mt_rand(0, $alphabetMax);
-            }
-
-            $identifier .= $alphabet[$random];
+            $identifier .= $alphabet[$this->getRandomNumber(0, $alphabetMax)];
         }
 
         return $identifier;
+    }
+
+    /**
+     * @param int $min
+     * @param int $max
+     * @return int
+     */
+    private function getRandomNumber($min, $max)
+    {
+        // The function random_int was added in PHP 7.0
+        if (function_exists('random_int')) {
+            return random_int($min, $max);
+        }
+
+        return mt_rand($min, $max);
     }
 }

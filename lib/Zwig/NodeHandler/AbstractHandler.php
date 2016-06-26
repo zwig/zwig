@@ -56,7 +56,7 @@ abstract class AbstractHandler
      * @param Compiler $compiler
      * @param Twig_Node $node
      * @param string $name
-     * @return null|Segment
+     * @return null|Segment|Segment[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */

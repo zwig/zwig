@@ -38,11 +38,12 @@ class NodeHandler extends AbstractHandler
         foreach ($node as $child) {
             $compilation = $compiler->compileNode($child);
 
-            if (is_array($compilation)) {
-                $commands = array_merge($commands, $compilation);
-            } else {
-                $commands[] = $compilation;
+            if (!is_array($compilation)) {
+                $compilation = [$compilation];
             }
+
+            $commands = array_merge($commands, $compilation);
+
         }
 
         return $commands;
