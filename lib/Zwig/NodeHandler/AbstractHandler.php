@@ -25,24 +25,26 @@ use Zwig\Sequence\Segment;
 abstract class AbstractHandler
 {
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment|Command[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public abstract function compile(Twig_Node $node);
+    public abstract function compile(Compiler $compiler, Twig_Node $node);
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @param string $name
      * @return Command[]|Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    protected function getCompiledNode(Twig_Node $node, $name)
+    protected function getCompiledNode(Compiler $compiler, Twig_Node $node, $name)
     {
         if ($child = $node->getNode($name)) {
-            return Compiler::compileNode($child);
+            return $compiler->compileNode($child);
         }
 
         throw new UnknownStructureException(
@@ -51,16 +53,17 @@ abstract class AbstractHandler
     }
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @param string $name
      * @return null|Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    protected function getOptionalCompiledNode(Twig_Node $node, $name)
+    protected function getOptionalCompiledNode(Compiler $compiler, Twig_Node $node, $name)
     {
         if (($child = $node->getNode($name)) !== null) {
-            return Compiler::compileNode($child);
+            return $compiler->compileNode($child);
         }
 
         return null;

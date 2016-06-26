@@ -27,13 +27,14 @@ class ExpressionArrayHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Array';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment
      * @internal param Template $template
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         if ($node->count() % 2 !== 0) {
             throw new UnknownStructureException(
@@ -41,7 +42,7 @@ class ExpressionArrayHandler extends AbstractHandler
             );
         }
 
-        $values = $this->getValues($node);
+        $values = $this->getValues($compiler, $node);
 
         return $this->arrayIsList($values) ?
             $this->formatList($values) :
@@ -49,16 +50,17 @@ class ExpressionArrayHandler extends AbstractHandler
     }
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return array
      */
-    private function getValues(Twig_Node $node)
+    private function getValues(Compiler $compiler, Twig_Node $node)
     {
         $values = [];
 
         for ($i = 0; $i < $node->count(); $i += 2) {
-            $key = Compiler::compileNode($node->getNode($i));
-            $value = Compiler::compileNode($node->getNode($i + 1));
+            $key = $compiler->compileNode($node->getNode($i));
+            $value = $compiler->compileNode($node->getNode($i + 1));
             $values[strval($key)] = strval($value);
         }
 

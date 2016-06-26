@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\OutputCommand;
@@ -25,15 +26,16 @@ class PrintHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Print';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return OutputCommand[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         return [new OutputCommand('html += %s;', [
-            $this->getCompiledNode($node, 'expr')
+            $this->getCompiledNode($compiler, $node, 'expr')
         ])];
     }
 }

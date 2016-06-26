@@ -27,42 +27,45 @@ class ExpressionFilterHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Filter';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         return new Segment('filters[%s](%s)', [
-            $this->getCompiledNode($node, 'filter'),
-            $this->getFilterSignature($node)
+            $this->getCompiledNode($compiler, $node, 'filter'),
+            $this->getFilterSignature($compiler, $node)
         ]);
     }
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return string
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    private function getFilterSignature(Twig_Node $node)
+    private function getFilterSignature(Compiler $compiler, Twig_Node $node)
     {
-        $arguments = $this->getFilterArguments($node);
+        $arguments = $this->getFilterArguments($compiler, $node);
         if (!$arguments) {
-            return $this->getCompiledNode($node, 'node');
+            return $this->getCompiledNode($compiler, $node, 'node');
         }
 
-        return sprintf('%s, %s', $this->getCompiledNode($node, 'node'), implode(',', $arguments));
+        return sprintf('%s, %s', $this->getCompiledNode($compiler, $node, 'node'), implode(',', $arguments));
     }
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    private function getFilterArguments(Twig_Node $node)
+    private function getFilterArguments(Compiler $compiler, Twig_Node $node)
     {
         if (!$node->hasNode('arguments')) {
             return [];
@@ -70,7 +73,7 @@ class ExpressionFilterHandler extends AbstractHandler
 
         $arguments = [];
         foreach ($node->getNode('arguments') as $argument) {
-            $arguments[] = Compiler::compileNode($argument);
+            $arguments[] = $compiler->compileNode($argument);
         }
 
         return $arguments;

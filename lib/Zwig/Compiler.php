@@ -62,9 +62,9 @@ class Compiler
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public static function compileNode(Twig_Node $node)
+    public function compileNode(Twig_Node $node)
     {
-        self::initCompilers();
+        $this->initCompilers();
 
         $nodeClassName = get_class($node);
 
@@ -74,10 +74,10 @@ class Compiler
             );
         }
 
-        return self::$compilers[$nodeClassName]->compile($node);
+        return self::$compilers[$nodeClassName]->compile($this, $node);
     }
 
-    private static function initCompilers()
+    private function initCompilers()
     {
         if (!self::$compilers) {
             self::$compilers = [];

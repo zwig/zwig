@@ -26,16 +26,17 @@ class NodeHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         $commands = [];
         foreach ($node as $child) {
-            $compilation = Compiler::compileNode($child);
+            $compilation = $compiler->compileNode($child);
 
             if (is_array($compilation)) {
                 $commands = array_merge($commands, $compilation);

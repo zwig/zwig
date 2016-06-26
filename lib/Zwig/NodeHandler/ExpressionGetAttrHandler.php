@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Segment;
@@ -25,16 +26,17 @@ class ExpressionGetAttrHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_GetAttr';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         return new Segment('%s[%s]', [
-            $this->getCompiledNode($node, 'node'),
-            $this->getCompiledNode($node, 'attribute')
+            $this->getCompiledNode($compiler, $node, 'node'),
+            $this->getCompiledNode($compiler, $node, 'attribute')
         ]);
     }
 }
