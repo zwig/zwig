@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Segment;
@@ -26,17 +27,18 @@ class ExpressionConditionalHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Conditional';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
         return new Segment('%s ? %s : %s', [
-            $this->getCompiledNode($node, 'expr1'),
-            $this->getCompiledNode($node, 'expr2'),
-            $this->getCompiledNode($node, 'expr3')
+            $this->getCompiledNode($compiler, $node, 'expr1'),
+            $this->getCompiledNode($compiler, $node, 'expr2'),
+            $this->getCompiledNode($compiler, $node, 'expr3')
         ]);
     }
 }

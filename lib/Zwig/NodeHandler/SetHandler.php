@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Command;
@@ -26,15 +27,16 @@ class SetHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_Set';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Command[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
-        $names = $this->getCompiledNode($node, 'names');
-        $values = $this->getCompiledNode($node, 'values');
+        $names = $this->getCompiledNode($compiler, $node, 'names');
+        $values = $this->getCompiledNode($compiler, $node, 'values');
 
         $commands = [];
         for ($i = 0; $i < count($names) && $i < count($values); $i++) {

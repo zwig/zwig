@@ -15,7 +15,7 @@ namespace Zwig\Util;
 /**
  * Class that generates unique identifiers.
  */
-abstract class UniqueID
+class UniqueID
 {
     private static $previouslyGeneratedIdentifier = [];
 
@@ -24,7 +24,7 @@ abstract class UniqueID
      * @param string $name
      * @return string
      */
-    public static function fromFunctionName($name)
+    public function fromFunctionName($name)
     {
         // Delete everything that is no letter, digit, underscore, slash and backslash
         $identifier = preg_replace('([^\w/\\\])', '', $name);
@@ -38,12 +38,12 @@ abstract class UniqueID
      * @param string $prefix
      * @return string
      */
-    public static function withPrefix($prefix)
+    public function withPrefix($prefix)
     {
         $identifier = $prefix . self::getRandomIdentifier(32 - strlen($prefix));
 
         if (in_array($identifier, self::$previouslyGeneratedIdentifier)) {
-            return self::withPrefix($prefix);
+            return $this->withPrefix($prefix);
         }
 
         self::$previouslyGeneratedIdentifier[] = $identifier;
@@ -55,23 +55,31 @@ abstract class UniqueID
      * @param int $length
      * @return string
      */
-    private static function getRandomIdentifier($length = 32)
+    private function getRandomIdentifier($length = 32)
     {
         $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $alphabetMax = strlen($alphabet) - 1;
 
         $identifier = '';
         while (strlen($identifier) < $length) {
-            // The function random_int was added in PHP 7.0
-            if (function_exists('random_int')) {
-                $random = random_int(0, $alphabetMax);
-            } else {
-                $random = mt_rand(0, $alphabetMax);
-            }
-
-            $identifier .= $alphabet[$random];
+            $identifier .= $alphabet[$this->getRandomNumber(0, $alphabetMax)];
         }
 
         return $identifier;
+    }
+
+    /**
+     * @param int $min
+     * @param int $max
+     * @return int
+     */
+    private function getRandomNumber($min, $max)
+    {
+        // The function random_int was added in PHP 7.0
+        if (function_exists('random_int')) {
+            return random_int($min, $max);
+        }
+
+        return mt_rand($min, $max);
     }
 }

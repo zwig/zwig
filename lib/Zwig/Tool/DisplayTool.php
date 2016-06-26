@@ -33,11 +33,11 @@ class DisplayTool
 
         $context = $this->getContext($contextPath);
 
-        if ($outputType == 'twig') {
-            $this->displayTwig($twig, $templateName, $context);
-        } else {
+        $html = $outputType == 'twig' ?
+            $this->displayTwig($twig, $templateName, $context) :
             $this->displayZwig($twig, $templateName, $context, $includeNames);
-        }
+
+        echo $html;
     }
 
     /**
@@ -99,7 +99,7 @@ class DisplayTool
     private function displayTwig(Twig_Environment $twig, $templateName, $context)
     {
         $template = $twig->loadTemplate($templateName);
-        $template->display($context);
+        return $template->display($context);
     }
 
     /**
@@ -132,6 +132,6 @@ class DisplayTool
             . "  <body></body>"
             . "</html>";
 
-        echo $html;
+        return $html;
     }
 }

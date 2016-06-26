@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Segment;
@@ -23,18 +24,19 @@ use Zwig\Sequence\Segment;
 abstract class AbstractExpressionBinaryHandler extends AbstractHandler
 {
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @param string $operation
      * @return Segment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    protected function compileBinary(Twig_Node $node, $operation)
+    protected function compileBinary(Compiler $compiler, Twig_Node $node, $operation)
     {
         return new Segment('%s %s %s', [
-            $this->getCompiledNode($node, 'left'),
+            $this->getCompiledNode($compiler, $node, 'left'),
             $operation,
-            $this->getCompiledNode($node, 'right'),
+            $this->getCompiledNode($compiler, $node, 'right'),
         ]);
     }
 }

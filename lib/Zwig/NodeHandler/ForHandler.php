@@ -12,6 +12,7 @@
 namespace Zwig\NodeHandler;
 
 use Twig_Node;
+use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Command;
@@ -27,19 +28,22 @@ class ForHandler extends AbstractHandler
     const TWIG_NODE_CLASS_NAME = 'Twig_Node_For';
 
     /**
+     * @param Compiler $compiler
      * @param Twig_Node $node
      * @return Command[]
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
-    public function compile(Twig_Node $node)
+    public function compile(Compiler $compiler, Twig_Node $node)
     {
-        $counter = UniqueID::withPrefix('counter');
-        $sequence = UniqueID::withPrefix('sequence');
-        $source = $this->getCompiledNode($node, 'seq');
-        $target = $this->getCompiledNode($node, 'value_target');
-        $body = $this->getCompiledNode($node, 'body');
-        $else = $this->getOptionalCompiledNode($node, 'else');
+        $uniqueID = new UniqueID();
+
+        $counter = $uniqueID->withPrefix('counter');
+        $sequence = $uniqueID->withPrefix('sequence');
+        $source = $this->getCompiledNode($compiler, $node, 'seq');
+        $target = $this->getCompiledNode($compiler, $node, 'value_target');
+        $body = $this->getCompiledNode($compiler, $node, 'body');
+        $else = $this->getOptionalCompiledNode($compiler, $node, 'else');
 
         $commands = [];
         $commands[] = new Command("var {$sequence} = {$source};");

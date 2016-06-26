@@ -261,9 +261,7 @@ function rangeUpwards(lhs, rhs) {
 }
 
 function rangeDownwards(lhs, rhs) {
-    var list = rangeUpwards(rhs, lhs);
-    list.reverse();
-    return list;
+    return rangeUpwards(rhs, lhs).reverse();
 }
 
 function rangeCharList(list) {
