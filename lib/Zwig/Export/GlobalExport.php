@@ -26,7 +26,7 @@ class GlobalExport implements ExportInterface
      */
     public function export($filename, $code)
     {
-        $js = "Zwig.Templates.%s = function(context) {\n"
+        $script = "Zwig.Templates.%s = function(context) {\n"
             . "  return (function(zwig, operators, filters, context) {\n"
             . "    var html = '';\n"
             . "    %s\n"
@@ -34,6 +34,6 @@ class GlobalExport implements ExportInterface
             . "  })(Zwig, Zwig.Operators, Zwig.Filters, context);\n"
             . "};";
 
-        return sprintf($js, UniqueID::fromFunctionName($filename), $code);
+        return sprintf($script, (new UniqueID())->fromFunctionName($filename), $code);
     }
 }

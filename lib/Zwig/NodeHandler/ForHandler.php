@@ -34,8 +34,10 @@ class ForHandler extends AbstractHandler
      */
     public function compile(Twig_Node $node)
     {
-        $counter = UniqueID::withPrefix('counter');
-        $sequence = UniqueID::withPrefix('sequence');
+        $uniqueID = new UniqueID();
+
+        $counter = $uniqueID->withPrefix('counter');
+        $sequence = $uniqueID->withPrefix('sequence');
         $source = $this->getCompiledNode($node, 'seq');
         $target = $this->getCompiledNode($node, 'value_target');
         $body = $this->getCompiledNode($node, 'body');

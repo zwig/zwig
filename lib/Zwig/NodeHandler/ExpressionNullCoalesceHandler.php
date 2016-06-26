@@ -11,11 +11,6 @@
 
 namespace Zwig\NodeHandler;
 
-use Twig_Node;
-use Zwig\Exception\NotImplementedException;
-use Zwig\Exception\UnknownStructureException;
-use Zwig\Sequence\Segment;
-
 
 /**
  * Compiles a node that returns the value of a defined variable or a placeholder otherwise.
