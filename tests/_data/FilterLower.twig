@@ -1,0 +1,27 @@
+<h1>Check if the filter `lower` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/lower.html">
+        http://twig.sensiolabs.org/doc/filters/lower.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'linus'|lower }}</li>
+        <li>{{ 'Linus'|lower }}</li>
+        <li>{{ 'LINUS'|lower }}</li>
+        <li>{{ 'Linus and Ida'|lower }}</li>
+        <li>{{ 0|lower }}</li>
+        <li>{{ (-0)|lower }}</li>
+        <li>{{ 42|lower }}</li>
+        <li>{{ (-42)|lower }}</li>
+        <li>{{ 3.12|lower }}</li>
+        <li>{{ (-3.12)|lower }}</li>
+        <li>{{ true|lower }}</li>
+        <li>{{ false|lower }}</li>
+        <li>{{ null|lower }}</li>
+        <li>{{ [1, 2, 3]|lower }}</li>
+        <li>{{ {"a": 1, "b": 2, "c":3}|lower }}</li>
+    </ul>
+</section>

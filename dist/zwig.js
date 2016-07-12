@@ -393,6 +393,10 @@ function joinObject(value, glue) {
     return parts.join(glue);
 }
 
+Filters.lower = function zwigFilterLower(value) {
+    return stringify(value).toLowerCase();
+};
+
 Filters.nl2br = function zwigFilterNl2br(value) {
     return value.replace('\n', '<br />');
 };
