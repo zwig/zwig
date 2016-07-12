@@ -51,7 +51,7 @@ Filters
 | keys                  | missing       |                                                                                 |
 | last                  | missing       |                                                                                 |
 | length                | missing       |                                                                                 |
-| lower                 | missing       |                                                                                 |
+| lower                 | complete      |                                                                                 |
 | merge                 | missing       |                                                                                 |
 | nl2br                 | partial       | Tests need some improvement.                                                    |
 | number_format         | missing       |                                                                                 |
