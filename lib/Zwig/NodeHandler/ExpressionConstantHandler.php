@@ -15,7 +15,7 @@ use Twig_Node;
 use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
-use Zwig\Sequence\Segment;
+use Zwig\Sequence\ConstantSegment;
 
 
 /**
@@ -28,12 +28,12 @@ class ExpressionConstantHandler extends AbstractHandler
     /**
      * @param Compiler $compiler
      * @param Twig_Node $node
-     * @return Segment
+     * @return ConstantSegment
      * @throws NotImplementedException
      * @throws UnknownStructureException
      */
     public function compile(Compiler $compiler, Twig_Node $node)
     {
-        return new Segment($this->convertArgument($node->getAttribute('value')));
+        return new ConstantSegment($this->convertArgument($node->getAttribute('value')));
     }
 }
