@@ -61,12 +61,21 @@ class ZwigTool
     {
         $templates = [];
 
-        $pattern = $templatePath . DIRECTORY_SEPARATOR . '*.twig';
-        foreach (glob($pattern) as $path) {
-            $filename = basename($path);
-            $destination = $templatePath . DIRECTORY_SEPARATOR . basename($path, '.twig') . '.js';
+        $directoryIterator = new \RecursiveDirectoryIterator($templatePath);
+        $recursiveIterator = new \RecursiveIteratorIterator($directoryIterator);
+        $iterator = new \RegexIterator($recursiveIterator, '/.*\.twig/', \RegexIterator::GET_MATCH);
 
-            $templates[$filename] = $destination;
+        $paths = [];
+        foreach ($iterator as $path) {
+            $paths = array_merge($paths, $path);
+        }
+
+        foreach ($paths as $path) {
+            $filename = basename($path);
+            $middlepath = substr($path, strlen($templatePath), strlen($path) - strlen($templatePath) - strlen($filename));
+            $destination = $templatePath . $middlepath . basename($filename, '.twig') . '.js';
+
+            $templates[$middlepath . $filename] = $destination;
         }
 
         return $templates;
