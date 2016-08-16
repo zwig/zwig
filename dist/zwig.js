@@ -325,7 +325,7 @@ Operators.sub = function zwigOperatorSub(lhs, rhs) {
     return numberify(lhs) - numberify(rhs);
 };
 
-Filters.abs = function zwigFilterAbs(value) {
+Filters.abs = function zwigFilterAbs(context, value) {
     if (typeof value === 'number' || typeof value === 'boolean') {
         return Math.abs(value);
     }
@@ -337,7 +337,7 @@ Filters.abs = function zwigFilterAbs(value) {
     return 0;
 };
 
-Filters.capitalize = function zwigFilterCapitalize(value) {
+Filters.capitalize = function zwigFilterCapitalize(context, value) {
     value = stringify(value);
 
     if (value.length === 0) {
@@ -347,7 +347,7 @@ Filters.capitalize = function zwigFilterCapitalize(value) {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
 };
 
-function zwigFilterEscape(value) {
+function zwigFilterEscape(context, value) {
     // Adapted from an StackOverflow answer by user Anentropic.
     // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery#answer-7124052
     return String(value)
@@ -362,7 +362,7 @@ function zwigFilterEscape(value) {
 Filters.escape = zwigFilterEscape;
 Filters.e = zwigFilterEscape;
 
-Filters.join = function zwigFilterJoin(value, glue) {
+Filters.join = function zwigFilterJoin(context, value, glue) {
     if (typeof glue === 'undefined') {
         glue = '';
     }
@@ -393,15 +393,15 @@ function joinObject(value, glue) {
     return parts.join(glue);
 }
 
-Filters.lower = function zwigFilterLower(value) {
+Filters.lower = function zwigFilterLower(context, value) {
     return stringify(value).toLowerCase();
 };
 
-Filters.nl2br = function zwigFilterNl2br(value) {
+Filters.nl2br = function zwigFilterNl2br(context, value) {
     return value.replace('\n', '<br />');
 };
 
-Filters.split = function zwigFilterSplit(value, separator, limit) {
+Filters.split = function zwigFilterSplit(context, value, separator, limit) {
     if (typeof separator === 'undefined') {
         separator = '';
     }
@@ -471,7 +471,7 @@ function splitIntoEqualSegments(value, limit) {
     }
 }
 
-Filters.title = function zwigFilterTitle(value) {
+Filters.title = function zwigFilterTitle(context, value) {
     value = stringify(value);
 
     return value.toLowerCase().replace(/^.|\s.|-.|_./g, function (match) {
@@ -479,7 +479,7 @@ Filters.title = function zwigFilterTitle(value) {
     });
 };
 
-Filters.trim = function zwigFilterTrim(value, search) {
+Filters.trim = function zwigFilterTrim(context, value, search) {
     value = stringify(value);
 
     if (typeof search === 'undefined') {

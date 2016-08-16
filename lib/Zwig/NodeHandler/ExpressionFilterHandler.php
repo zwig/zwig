@@ -52,10 +52,10 @@ class ExpressionFilterHandler extends AbstractHandler
     {
         $arguments = $this->getFilterArguments($compiler, $node);
         if (!$arguments) {
-            return $this->getCompiledNode($compiler, $node, 'node');
+            return sprintf('context, %s', $this->getCompiledNode($compiler, $node, 'node'));
         }
 
-        return sprintf('%s, %s', $this->getCompiledNode($compiler, $node, 'node'), implode(',', $arguments));
+        return sprintf('context, %s, %s', $this->getCompiledNode($compiler, $node, 'node'), implode(',', $arguments));
     }
 
     /**
