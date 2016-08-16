@@ -175,3 +175,21 @@
 
     <p>{{ outer }}</p>
 </section>
+
+<section>
+    {% if false %}
+        <p>false is true</p>
+    {% elseif true %}
+        <p>elseif true is true</p>
+    {% else %}
+        <p>else is true</p>
+    {% endif %}
+
+    {% if false %}
+        <p>false is true</p>
+    {% elseif false %}
+        <p>else true is true</p>
+    {% else %}
+        <p>else is true</p>
+    {% endif %}
+</section>
