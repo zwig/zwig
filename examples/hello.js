@@ -1,4 +1,4 @@
-Zwig.Templates.__hellotwig = function(context) {
+Zwig.Templates.hellotwig = function(context) {
   return (function(zwig, operators, filters, context) {
     var html = '';
     html += "Hello ";html += filters['escape'](context, filters['title'](context, context.get("name")), 'html',null,true);

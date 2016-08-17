@@ -144,7 +144,7 @@ function findTemplate(filename) {
 function getTemplateIdentifier(filename) {
     // First delete everything that is no letter, digit, underscore, slash or backslash
     // and then replace directory separators with two underscores.
-    return filename.replace(/([^\w/\\])/, '').replace(/([/\\])/, '__');
+    return filename.replace(/^\//, '').replace(/([^\w/\\])/, '').replace(/([/\\])/, '__');
 }
 
 Operators.add = function zwigOperatorAdd(lhs, rhs) {

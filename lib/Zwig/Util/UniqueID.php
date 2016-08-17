@@ -26,8 +26,9 @@ class UniqueID
      */
     public function fromFunctionName($name)
     {
+        $identifier = trim($name, '/');
         // Delete everything that is no letter, digit, underscore, slash and backslash
-        $identifier = preg_replace('([^\w/\\\])', '', $name);
+        $identifier = preg_replace('([^\w/\\\])', '', $identifier);
         // Replace directory separators with two underscores
         $identifier = preg_replace('([/\\\])', '__', $identifier);
 
