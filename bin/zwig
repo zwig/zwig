@@ -17,24 +17,177 @@ if (file_exists(__DIR__ . "/../vendor/autoload.php")) {
     require_once(__DIR__ . "/../../../autoload.php");
 }
 
-use Zwig\Exception\InvalidParameterException;
-use Zwig\Tool\ZwigTool;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Zwig\Zwig;
 
+class ConvertCommand extends Command
+{
+    private $root;
+    private $files = [];
+    private $extensions = [];
 
-try {
-    $tool = new ZwigTool();
-    $tool->run($argv);
-} catch (InvalidParameterException $ex) {
-    echo $ex->getMessage();
-    echo <<< HELP
-    
-    
-Usage: zwig <template directory>
+    protected function configure()
+    {
+        $this->setName('convert');
+        $this->setDescription('Converts Twig templates into JavaScript');
+        $this->setHelp("Todo: add help text");
 
-where <template directory>:
-    is the base directory of your templates
+        $this->addArgument('target', InputArgument::REQUIRED, 'Where are your templates?');
+        $this->addOption(
+            'extension',
+            'e',
+            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+            'What Twig extensions should be loaded?'
+        );
+    }
 
-HELP;
-} catch (Exception $ex) {
-    echo "Zwig failed with an unexpected error.";
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @throws Exception
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->loadConfig($input);
+
+        $twigLoader = new Twig_Loader_Filesystem($this->root);
+        $twigEnvironment = new Twig_Environment($twigLoader);
+
+        foreach ($this->extensions as $extension) {
+            $twigEnvironment->addExtension($extension);
+        }
+
+        $zwig = new Zwig($twigEnvironment);
+
+        foreach ($this->files as $source => $destination) {
+            try {
+                file_put_contents($this->root . $destination, $zwig->convertFile($source));
+                $output->writeln(sprintf('┏━  %s<info>%s</info>', $this->root, $source));
+                $output->writeln(sprintf('┗━➤ %s<info>%s</info>', $this->root, $destination));
+            } catch (\Exception $ex) {
+                $output->writeln(sprintf('┏━  %s<error>%s</error>', $this->root, $source));
+                $output->writeln(sprintf('┗━➤ %s<error>%s</error>', $this->root, $destination));
+                throw $ex;
+            }
+        }
+    }
+
+    /**
+     * @param InputInterface $input
+     * @throws Exception
+     */
+    private function loadConfig(InputInterface $input)
+    {
+        $target = $input->getArgument('target');
+        if (is_dir($target)) {
+            $this->loadFilesFromDirectory($target);
+        } else if (is_file($target)) {
+            $this->loadFilesFromJSON($target);
+        } else {
+            throw new \Exception("Couldn't find the target");
+        }
+
+        $this->loadExtensions($input);
+    }
+
+    /**
+     * @param string $root
+     */
+    private function loadFilesFromDirectory($root)
+    {
+        $root = realpath($root);
+
+        $files = [];
+        $paths = [];
+
+        $directoryIterator = new \RecursiveDirectoryIterator($root);
+        $recursiveIterator = new \RecursiveIteratorIterator($directoryIterator);
+        $iterator = new \RegexIterator($recursiveIterator, '/.*\.twig/', \RegexIterator::GET_MATCH);
+
+        foreach ($iterator as $path) {
+            $paths = array_merge($paths, $path);
+        }
+
+        foreach ($paths as $path) {
+            $source = $this->trimString($path, $root);
+            $destination = $this->trimString($source, '.twig') . '.js';
+            $files[$source] = $destination;
+        }
+
+        $this->root = $root;
+        $this->files = $files;
+    }
+
+    /**
+     * @param string $path
+     * @throws Exception
+     */
+    private function loadFilesFromJSON($path)
+    {
+        try {
+            $data = json_decode(file_get_contents($path));
+        } catch (\Exception $ex) {
+            throw new Exception('Unable to parse JSON');
+        }
+
+        $root = realpath($data->root);
+        $files = [];
+
+        foreach ($data->files as $file) {
+            $file = realpath($file);
+            $source = $this->trimString($file, $root);
+            $destination = $this->trimString($source, '.twig') . '.js';
+            $files[$source] = $destination;
+        }
+
+        $this->root = $root;
+        $this->files = $files;
+    }
+
+    /**
+     * @param InputInterface $input
+     * @return mixed
+     * @throws Exception
+     */
+    private function loadExtensions(InputInterface $input)
+    {
+        $extensions = $input->getOption('extension');
+        foreach ($extensions as $index => $name) {
+            if (!class_exists($name)) {
+                throw new \Exception(sprintf('Unable to load extension %s', $name));
+            }
+
+            $extensions[$index] = new $name();
+        }
+
+        $this->extensions = $extensions;
+    }
+
+    /**
+     * @param string $value
+     * @param string $junk
+     * @return string
+     */
+    private function trimString($value, $junk)
+    {
+        if (strpos($value, $junk) === 0) {
+            $value = substr($value, strlen($junk));
+        }
+
+        if (strpos($value, $junk) == strlen($value) - strlen($junk)) {
+            $value = substr($value, 0, strlen($value) - strlen($junk));
+        }
+
+        return $value;
+    }
 }
+
+
+$application = new Application();
+$application->add(new ConvertCommand());
+$application->run();

@@ -32,7 +32,7 @@ composer require zwig/zwig
 
 Convert templates:
 ```
-./vendor/bin/zwig path/to/your/templates
+./vendor/bin/zwig convert path/to/your/templates
 ```
 
 Start using them:
