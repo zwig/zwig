@@ -1,0 +1,6 @@
+{
+    "root": "examples/",
+    "files": [
+        "examples/hello.twig"
+    ]
+}

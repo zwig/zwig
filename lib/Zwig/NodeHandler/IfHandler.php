@@ -36,44 +36,53 @@ class IfHandler extends AbstractHandler
      */
     public function compile(Compiler $compiler, Twig_Node $node)
     {
-        $body = $this->getCompiledNode($compiler, $node, 'tests');
+        $tests = $node->getNode('tests');
         $else = $this->getOptionalCompiledNode($compiler, $node, 'else');
-        $test = array_shift($body);
+
+        $commands = $this->getIfCommands($compiler, $tests);
 
         if ($else !== null) {
-            return $this->getIfElseCommands($test, $body, $else);
+            $commands = array_merge($commands, $this->getElseCommands($else));
         }
-
-        return $this->getIfCommands($test, $body);
-    }
-
-    /**
-     * @param Segment $test
-     * @param array $body
-     * @return array
-     */
-    private function getIfCommands(Segment $test, array $body)
-    {
-        $commands = [];
-        $commands[] = new Command("if ({$test}) {");
-        $commands = array_merge($commands, $body);
-        $commands[] = new Command('}');
 
         return $commands;
     }
 
     /**
-     * @param Segment $test
-     * @param array $body
+     * @param Compiler $compiler
+     * @param Twig_Node $body
+     * @return array
+     */
+    private function getIfCommands(Compiler $compiler, Twig_Node $body)
+    {
+        $test = $compiler->compileNode($body->getNode(0));
+        $cmd = $compiler->compileNode($body->getNode(1));
+
+        $commands = [];
+        $commands[] = new Command("if ($test) {");
+        $commands = array_merge($commands, $cmd);
+        $commands[] = new Command('}');
+
+        for ($i = 2; $i < count($body); $i += 2) {
+            $test = $compiler->compileNode($body->getNode($i + 0));
+            $cmd = $compiler->compileNode($body->getNode($i + 1));
+
+            $commands[] = new Command("else if ($test) {");
+            $commands = array_merge($commands, $cmd);
+            $commands[] = new Command('}');
+        }
+
+        return $commands;
+    }
+
+    /**
      * @param array $else
      * @return array
      */
-    private function getIfElseCommands(Segment $test, array $body, array $else)
+    private function getElseCommands(array $else)
     {
         $commands = [];
-        $commands[] = new Command("if ({$test}) {");
-        $commands = array_merge($commands, $body);
-        $commands[] = new Command('} else {');
+        $commands[] = new Command('else {');
         $commands = array_merge($commands, $else);
         $commands[] = new Command('}');
 

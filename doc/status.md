@@ -39,7 +39,18 @@ Filters
 | abs                   | complete      |                                                                                 |
 | batch                 | missing       |                                                                                 |
 | capitalize            | working       |                                                                                 |
-| convert_encoding      | missing       |                                                                                 |
+| convert_encoding      | missing       |         - phpenv config-add php.ini
+
+  # Install PHP dependencies
+  - composer install
+
+  # Download PhantomJS 2 for Ubuntu Precise Pangolin.
+  # Because there is only PhantomJS 1.9.* pre-installed.
+  - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  - tar -xf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+
+  # CodeCeption has to use our own PhantomJS binary.
+  - sed -i 's/phantomjs/.\/phantomjs/g' codeception.yml                                                                          |
 | date                  | missing       |                                                                                 |
 | date_modify           | missing       |                                                                                 |
 | default               | missing       |                                                                                 |
@@ -63,7 +74,7 @@ Filters
 | sort                  | missing       |                                                                                 |
 | split                 | complete      |                                                                                 |
 | striptags             | missing       |                                                                                 |
-| title                 | working       |                                                                                 |
+| title                 | complete      |                                                                                 |
 | trim                  | complete      |                                                                                 |
 | upper                 | missing       |                                                                                 |
 | url_encode            | missing       |                                                                                 |
