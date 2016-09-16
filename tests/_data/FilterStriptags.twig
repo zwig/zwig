@@ -1,0 +1,44 @@
+<h1>Check if the filter `striptags` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/striptags.html">
+        http://twig.sensiolabs.org/doc/filters/striptags.html
+    </a><br/>
+    See <a href="http://php.net/manual/de/function.strip-tags.php">
+        http://php.net/manual/de/function.strip-tags.php
+    </a>
+</p>
+
+<section>
+    <ul>
+        {{ 'Hello Linus!'|striptags }}
+    </ul>
+
+    <ul>
+        {{ '<strong>Hello Linus!</strong>'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello <strong>Linus</strong>!'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello <a href="about:blank">Linus</a>!'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello <a href="about:blank"><strong>Linus</strong></a>!'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello Linus!\nHow are you?'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello Linus!\n<strong>How are you?</strong>'|striptags }}
+    </ul>
+
+    <ul>
+        {{ 'Hello Linus!<br/>How are you?'|striptags }}
+    </ul>
+</section>
