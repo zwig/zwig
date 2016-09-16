@@ -168,6 +168,10 @@ Operators.floordiv = function zwigOperatorFloorDiv(lhs, rhs) {
 };
 
 Operators.in = function zwigOperatorIn(needle, haystack) {
+    if (typeof haystack === 'undefined') {
+        return false;
+    }
+
     if (typeof haystack === 'string') {
         return inString(haystack, needle);
     }
@@ -470,6 +474,15 @@ function splitIntoEqualSegments(value, limit) {
         return value.split('');
     }
 }
+
+Filters.striptags = function zwigFilterStriptags(context, value) {
+    value = stringify(value);
+
+    var div = document.createElement('div');
+    div.innerHTML = value;
+
+    return div.textContent || div.innerText;
+};
 
 Filters.title = function zwigFilterTitle(context, value) {
     value = stringify(value);
