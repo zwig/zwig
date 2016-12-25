@@ -48,7 +48,7 @@ abstract class AbstractHandler
         }
 
         throw new UnknownStructureException(
-            sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getLine())
+            sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getTemplateLine())
         );
     }
 

@@ -107,6 +107,7 @@ class DisplayTool
      * @param string $templateName
      * @param array $context
      * @param string $includeNames
+     * @return string
      */
     private function displayZwig(Twig_Environment $twig, $templateName, $context, $includeNames)
     {
@@ -124,9 +125,9 @@ class DisplayTool
             . "  <head>"
             . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
             . "    <script src='/dist/zwig.js'></script>"
-            . "    <script>{$source}</script>"
+            . "    <script>${source}</script>"
             . "    <script>"
-            . "      document.write(Zwig.render('{$templateName}', {$json}));"
+            . "      document.write(Zwig.render('{$templateName}', ${json}));"
             . "    </script>"
             . "  </head>"
             . "  <body></body>"

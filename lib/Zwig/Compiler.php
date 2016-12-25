@@ -70,7 +70,7 @@ class Compiler
 
         if (!isset(self::$compilers[$nodeClassName])) {
             throw new NotImplementedException(
-                sprintf('Unknown node type `%s` at line %s', $nodeClassName, $node->getLine())
+                sprintf('Unknown node type `%s` at line %s', $nodeClassName, $node->getTemplateLine())
             );
         }
 

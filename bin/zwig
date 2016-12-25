@@ -49,6 +49,7 @@ class ConvertCommand extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return void
      * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -151,7 +152,7 @@ class ConvertCommand extends Command
 
     /**
      * @param InputInterface $input
-     * @return mixed
+     * @return void
      * @throws Exception
      */
     private function loadExtensions(InputInterface $input)
