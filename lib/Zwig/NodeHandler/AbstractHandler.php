@@ -62,7 +62,7 @@ abstract class AbstractHandler
      */
     protected function getOptionalCompiledNode(Compiler $compiler, Twig_Node $node, $name)
     {
-        if (($child = $node->getNode($name)) !== null) {
+        if ($node->hasNode($name) && ($child = $node->getNode($name)) !== null) {
             return $compiler->compileNode($child);
         }
 

@@ -51,7 +51,7 @@ class IncludeHandler extends AbstractHandler
      */
     private function getIncludeData(Compiler $compiler, Twig_Node $node)
     {
-        if ($child = $node->getNode('variables')) {
+        if ($node->hasNode('variables') && $child = $node->getNode('variables')) {
             return $compiler->compileNode($child);
         }
 
