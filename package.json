@@ -2,7 +2,7 @@
   "name": "zwig",
   "version": "0.1.0",
   "description": "Zwig converts Twig templates into executable JavaScript",
-  "author": "Alexander Skrotzky",
+  "author": "Alexander Kramer",
   "license": "MIT",
   "repository": {
     "type": "git",

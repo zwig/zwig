@@ -2,7 +2,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -16,7 +16,6 @@ use Zwig\Compiler;
 use Zwig\Exception\NotImplementedException;
 use Zwig\Exception\UnknownStructureException;
 use Zwig\Sequence\Command;
-use Zwig\Sequence\Segment;
 
 
 /**
