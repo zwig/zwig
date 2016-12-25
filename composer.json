@@ -1,7 +1,7 @@
 {
     "name": "zwig/zwig",
     "type": "library",
-    "description": "Zwig converts Twig templates into executable JavaScript",
+    "description": "Zwig converts Twig templates into JavaScript",
     "keywords": [
         "templating"
     ],

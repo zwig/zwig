@@ -1,7 +1,7 @@
 {
   "name": "zwig",
   "version": "0.1.0",
-  "description": "Zwig converts Twig templates into executable JavaScript",
+  "description": "Zwig converts Twig templates into JavaScript",
   "author": "Alexander Kramer",
   "license": "MIT",
   "repository": {

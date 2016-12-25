@@ -21,7 +21,7 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a Twig template into executable JavaScript.
+ * Compiles a Twig template into JavaScript.
  */
 class Compiler
 {
