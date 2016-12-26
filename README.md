@@ -32,7 +32,7 @@ composer require zwig/zwig
 
 Convert templates:
 ```
-./vendor/bin/zwig convert path/to/your/templates
+./vendor/bin/zwig convert vendor/zwig/zwig/examples
 ```
 
 Start using them:
@@ -54,6 +54,16 @@ Start using them:
 Check the directory ```vendor/zwig/zwig/examples``` for more examples.
 
 
+More information
+----------------
+
+ * [How to use the commandline tool][4]
+ * [How to use Twig extensions][5]
+ * [What is the current implementation status][3]
+
+
 [1]: http://twig.sensiolabs.org/
 [2]: https://getcomposer.org/
 [3]: doc/status.md
+[4]: doc/commandline.md
+[5]: doc/extensions.md
