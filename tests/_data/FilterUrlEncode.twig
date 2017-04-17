@@ -1,0 +1,15 @@
+<h1>Check if the filter `url_encode` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/url_encode.html">
+        http://twig.sensiolabs.org/doc/filters/url_encode.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ "path-seg?ment"|url_encode }}</li>
+        <li>{{ "string with spaces"|url_encode }}</li>
+        <li>{{ {'param': 'value', 'foo': 'bar'}|url_encode }}</li>
+    </ul>
+</section>

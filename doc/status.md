@@ -66,7 +66,7 @@ Filters
 | title                 | complete      |                                                                                 |
 | trim                  | complete      |                                                                                 |
 | upper                 | complete      |                                                                                 |
-| url_encode            | missing       |                                                                                 |
+| url_encode            | partial       | Tests need some improvement. Please note http://stackoverflow.com/a/6533595     |
 | custom                | missing       |                                                                                 |
 | custom escaping       | missing       |                                                                                 |
 
