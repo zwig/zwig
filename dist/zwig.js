@@ -341,6 +341,20 @@ Filters.abs = function zwigFilterAbs(context, value) {
     return 0;
 };
 
+    Filters.batch = function zwigFilterBatch(context, value, count, filler) {
+        var lastGroup, groups = [];
+        for (var i = 0; i < value.length; i += count) {
+            groups.push(value.slice(i, i + count));
+        }
+
+        lastGroup = groups[groups.length - 1];
+        while (lastGroup.length < count) {
+            lastGroup.push(filler);
+        }
+
+        return groups;
+    };
+
 Filters.capitalize = function zwigFilterCapitalize(context, value) {
     value = stringify(value);
 

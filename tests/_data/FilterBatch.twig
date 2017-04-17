@@ -1,0 +1,21 @@
+<h1>Check if the filter `batch` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/batch.html">
+        http://twig.sensiolabs.org/doc/filters/batch.html
+    </a>
+</p>
+
+<section>
+    {% set items = ['a', 'b', 'c', 'd', 'e', 'f', 'g'] %}
+
+    <table>
+        {% for row in items|batch(3, 'No item') %}
+            <tr>
+                {% for column in row %}
+                    <td>{{ column }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</section>
