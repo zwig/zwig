@@ -1,0 +1,21 @@
+<h1>Check if the filter `json_encode` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/json_encode.html">
+        http://twig.sensiolabs.org/doc/filters/json_encode.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ [1, 2, 3]|upper }}</li>
+        <li>{{ {"a": 1, "b": 2, "c":3}|upper }}</li>
+        <li>{{ true|upper }}</li>
+        <li>{{ false|upper }}</li>
+        <li>{{ null|upper }}</li>
+        <li>{{ 0|json_encode }}</li>
+        <li>{{ 3.5|json_encode }}</li>
+        <li>{{ 42|json_encode }}</li>
+        <li>{{ 'Linus'|json_encode }}</li>
+    </ul>
+</section>
