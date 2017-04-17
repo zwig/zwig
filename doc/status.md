@@ -37,7 +37,7 @@ Filters
 | Filter                | Status        | Comment                                                                         |
 |-----------------------|---------------|---------------------------------------------------------------------------------|
 | abs                   | complete      |                                                                                 |
-| batch                 | missing       |                                                                                 |
+| batch                 | partial       | Tests need some improvement.                                                    |
 | capitalize            | working       |                                                                                 |
 | convert_encoding      | missing       |                                                                                 |
 | date                  | missing       |                                                                                 |
