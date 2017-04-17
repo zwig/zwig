@@ -118,7 +118,7 @@ Tests
 | defined               | partial       | Tests need some improvement.                                                    |
 | divisibleby           | missing       |                                                                                 |
 | empty                 | missing       |                                                                                 |
-| even                  | missing       |                                                                                 |
+| even                  | partial       | Tests need some improvement.                                                    |
 | iterable              | missing       |                                                                                 |
 | null                  | missing       |                                                                                 |
 | odd                   | partial       | Tests need some improvement.                                                    |
