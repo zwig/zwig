@@ -514,4 +514,19 @@ Filters.trim = function zwigFilterTrim(context, value, search) {
     Filters.upper = function zwigFilterUpper(context, value) {
         return stringify(value).toUpperCase();
     };
+
+    Filters.url_encode = function zwigFilterUrlEncode(context, value) {
+        if (typeof value === 'object') {
+            var key, keypairs = [];
+            for (key in value) {
+                if (value.hasOwnProperty(key)) {
+                    keypairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(value[key]));
+                }
+            }
+
+            return keypairs.join('&');
+        }
+
+        return encodeURIComponent(value);
+    };
 })();
