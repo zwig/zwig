@@ -35,7 +35,7 @@ class ExpressionTestEvenHandler extends AbstractHandler
      */
     public function compile(Compiler $compiler, Twig_Node $node)
     {
-        return new Segment('(%s %% 2) == 0 ? 1 : 0', [
+        return new Segment('((%s %% 2) == 0 ? 1 : 0)', [
             $this->getCompiledNode($compiler, $node, 'node')
         ]);
     }
