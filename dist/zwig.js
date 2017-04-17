@@ -351,6 +351,7 @@ Filters.capitalize = function zwigFilterCapitalize(context, value) {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
 };
 
+//noinspection JSUnusedLocalSymbols
 function zwigFilterEscape(context, value) {
     // Adapted from an StackOverflow answer by user Anentropic.
     // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery#answer-7124052
@@ -501,4 +502,8 @@ Filters.trim = function zwigFilterTrim(context, value, search) {
 
     return value.replace(new RegExp('^[' + search + ']+|[' + search + ']+$', 'g'), '');
 };
+
+    Filters.upper = function zwigFilterUpper(context, value) {
+        return stringify(value).toUpperCase();
+    };
 })();

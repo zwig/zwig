@@ -65,7 +65,7 @@ Filters
 | striptags             | partial       | Doesn't support parameter allowable_tags yet.                                   |
 | title                 | complete      |                                                                                 |
 | trim                  | complete      |                                                                                 |
-| upper                 | missing       |                                                                                 |
+| upper                 | complete      |                                                                                 |
 | url_encode            | missing       |                                                                                 |
 | custom                | missing       |                                                                                 |
 | custom escaping       | missing       |                                                                                 |

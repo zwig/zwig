@@ -1,0 +1,27 @@
+<h1>Check if the filter `upper` is working properly</h1>
+
+<p>
+    See <a href="http://twig.sensiolabs.org/doc/filters/upper.html">
+        http://twig.sensiolabs.org/doc/filters/upper.html
+    </a>
+</p>
+
+<section>
+    <ul>
+        <li>{{ 'linus'|upper }}</li>
+        <li>{{ 'Linus'|upper }}</li>
+        <li>{{ 'LINUS'|upper }}</li>
+        <li>{{ 'Linus and Ida'|upper }}</li>
+        <li>{{ 0|upper }}</li>
+        <li>{{ (-0)|upper }}</li>
+        <li>{{ 42|upper }}</li>
+        <li>{{ (-42)|upper }}</li>
+        <li>{{ 3.12|upper }}</li>
+        <li>{{ (-3.12)|upper }}</li>
+        <li>{{ true|upper }}</li>
+        <li>{{ false|upper }}</li>
+        <li>{{ null|upper }}</li>
+        <li>{{ [1, 2, 3]|upper }}</li>
+        <li>{{ {"a": 1, "b": 2, "c":3}|upper }}</li>
+    </ul>
+</section>
