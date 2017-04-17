@@ -47,7 +47,7 @@ Filters
 | first                 | missing       |                                                                                 |
 | format                | missing       |                                                                                 |
 | join                  | complete      |                                                                                 |
-| json_encode           | missing       |                                                                                 |
+| json_encode           | partial       | Tests need some improvement. The optional parameter $options is not supported.  |
 | keys                  | missing       |                                                                                 |
 | last                  | missing       |                                                                                 |
 | length                | missing       |                                                                                 |

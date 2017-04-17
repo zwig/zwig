@@ -398,6 +398,14 @@ function joinObject(value, glue) {
     return parts.join(glue);
 }
 
+    Filters.json_encode = function zwigFilterJsonEncode(context, value) {
+        if (typeof value === 'object' || typeof value === 'string') {
+            return JSON.stringify(stringify(value));
+        }
+
+        return value;
+    };
+
 Filters.lower = function zwigFilterLower(context, value) {
     return stringify(value).toLowerCase();
 };
