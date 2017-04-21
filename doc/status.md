@@ -116,9 +116,9 @@ Tests
 |-----------------------|---------------|---------------------------------------------------------------------------------|
 | constant              | no support    | This tag will not be implemented.                                               |
 | defined               | partial       | Tests need some improvement.                                                    |
-| divisibleby           | missing       |                                                                                 |
+| divisibleby           | partial       | Tests need some improvement.                                                    |
 | empty                 | missing       |                                                                                 |
-| even                  | missing       |                                                                                 |
+| even                  | partial       | Tests need some improvement.                                                    |
 | iterable              | missing       |                                                                                 |
 | null                  | missing       |                                                                                 |
 | odd                   | partial       | Tests need some improvement.                                                    |

@@ -19,12 +19,12 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a node that checks if a variable is odd.
- * @see http://twig.sensiolabs.org/doc/tests/odd.html
+ * Compiles a node that checks if a variable is even.
+ * @see http://twig.sensiolabs.org/doc/tests/even.html
  */
-class ExpressionTestOddHandler extends AbstractHandler
+class ExpressionTestEvenHandler extends AbstractHandler
 {
-    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Odd';
+    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Even';
 
     /**
      * @param Compiler $compiler
@@ -35,7 +35,7 @@ class ExpressionTestOddHandler extends AbstractHandler
      */
     public function compile(Compiler $compiler, Twig_Node $node)
     {
-        return new Segment('((%s %% 2) == 1 ? 1 : 0)', [
+        return new Segment('((%s %% 2) == 0 ? 1 : 0)', [
             $this->getCompiledNode($compiler, $node, 'node')
         ]);
     }

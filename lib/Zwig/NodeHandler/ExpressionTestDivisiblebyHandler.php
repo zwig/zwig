@@ -19,12 +19,12 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a node that checks if a variable is odd.
- * @see http://twig.sensiolabs.org/doc/tests/odd.html
+ * Compiles a node that checks if a variable is divisible without a rest.
+ * @see http://twig.sensiolabs.org/doc/tests/divisibleby.html
  */
-class ExpressionTestOddHandler extends AbstractHandler
+class ExpressionTestDivisiblebyHandler extends AbstractHandler
 {
-    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Odd';
+    const TWIG_NODE_CLASS_NAME = 'Twig_Node_Expression_Test_Divisibleby';
 
     /**
      * @param Compiler $compiler
@@ -35,8 +35,9 @@ class ExpressionTestOddHandler extends AbstractHandler
      */
     public function compile(Compiler $compiler, Twig_Node $node)
     {
-        return new Segment('((%s %% 2) == 1 ? 1 : 0)', [
-            $this->getCompiledNode($compiler, $node, 'node')
+        return new Segment('((%s %% %s) == 0 ? 1 : 0)', [
+            $this->getCompiledNode($compiler, $node, 'node'),
+            array_pop($this->getCompiledNode($compiler, $node, 'arguments'))
         ]);
     }
 }
