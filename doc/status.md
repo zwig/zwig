@@ -37,7 +37,7 @@ Filters
 | Filter                | Status        | Comment                                                                         |
 |-----------------------|---------------|---------------------------------------------------------------------------------|
 | abs                   | complete      |                                                                                 |
-| batch                 | missing       |                                                                                 |
+| batch                 | partial       | Tests need some improvement.                                                    |
 | capitalize            | working       |                                                                                 |
 | convert_encoding      | missing       |                                                                                 |
 | date                  | missing       |                                                                                 |
@@ -47,7 +47,7 @@ Filters
 | first                 | missing       |                                                                                 |
 | format                | missing       |                                                                                 |
 | join                  | complete      |                                                                                 |
-| json_encode           | missing       |                                                                                 |
+| json_encode           | partial       | Tests need some improvement. The optional parameter $options is not supported.  |
 | keys                  | missing       |                                                                                 |
 | last                  | missing       |                                                                                 |
 | length                | missing       |                                                                                 |
@@ -65,8 +65,8 @@ Filters
 | striptags             | partial       | Doesn't support parameter allowable_tags yet.                                   |
 | title                 | complete      |                                                                                 |
 | trim                  | complete      |                                                                                 |
-| upper                 | missing       |                                                                                 |
-| url_encode            | missing       |                                                                                 |
+| upper                 | complete      |                                                                                 |
+| url_encode            | partial       | Tests need some improvement. Please note http://stackoverflow.com/a/6533595     |
 | custom                | missing       |                                                                                 |
 | custom escaping       | missing       |                                                                                 |
 

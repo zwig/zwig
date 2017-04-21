@@ -2,7 +2,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -51,7 +51,7 @@ class IncludeHandler extends AbstractHandler
      */
     private function getIncludeData(Compiler $compiler, Twig_Node $node)
     {
-        if ($child = $node->getNode('variables')) {
+        if ($node->hasNode('variables') && $child = $node->getNode('variables')) {
             return $compiler->compileNode($child);
         }
 

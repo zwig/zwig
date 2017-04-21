@@ -2,7 +2,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -21,7 +21,7 @@ use Zwig\Sequence\Segment;
 
 
 /**
- * Compiles a Twig template into executable JavaScript.
+ * Compiles a Twig template into JavaScript.
  */
 class Compiler
 {
@@ -70,7 +70,7 @@ class Compiler
 
         if (!isset(self::$compilers[$nodeClassName])) {
             throw new NotImplementedException(
-                sprintf('Unknown node type `%s` at line %s', $nodeClassName, $node->getLine())
+                sprintf('Unknown node type `%s` at line %s', $nodeClassName, $node->getTemplateLine())
             );
         }
 

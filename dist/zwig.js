@@ -1,7 +1,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -341,6 +341,20 @@ Filters.abs = function zwigFilterAbs(context, value) {
     return 0;
 };
 
+    Filters.batch = function zwigFilterBatch(context, value, count, filler) {
+        var lastGroup, groups = [];
+        for (var i = 0; i < value.length; i += count) {
+            groups.push(value.slice(i, i + count));
+        }
+
+        lastGroup = groups[groups.length - 1];
+        while (lastGroup.length < count) {
+            lastGroup.push(filler);
+        }
+
+        return groups;
+    };
+
 Filters.capitalize = function zwigFilterCapitalize(context, value) {
     value = stringify(value);
 
@@ -351,6 +365,7 @@ Filters.capitalize = function zwigFilterCapitalize(context, value) {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
 };
 
+//noinspection JSUnusedLocalSymbols
 function zwigFilterEscape(context, value) {
     // Adapted from an StackOverflow answer by user Anentropic.
     // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery#answer-7124052
@@ -396,6 +411,14 @@ function joinObject(value, glue) {
 
     return parts.join(glue);
 }
+
+    Filters.json_encode = function zwigFilterJsonEncode(context, value) {
+        if (typeof value === 'object' || typeof value === 'string') {
+            return JSON.stringify(stringify(value));
+        }
+
+        return value;
+    };
 
 Filters.lower = function zwigFilterLower(context, value) {
     return stringify(value).toLowerCase();
@@ -501,4 +524,23 @@ Filters.trim = function zwigFilterTrim(context, value, search) {
 
     return value.replace(new RegExp('^[' + search + ']+|[' + search + ']+$', 'g'), '');
 };
+
+    Filters.upper = function zwigFilterUpper(context, value) {
+        return stringify(value).toUpperCase();
+    };
+
+    Filters.url_encode = function zwigFilterUrlEncode(context, value) {
+        if (typeof value === 'object') {
+            var key, keypairs = [];
+            for (key in value) {
+                if (value.hasOwnProperty(key)) {
+                    keypairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(value[key]));
+                }
+            }
+
+            return keypairs.join('&');
+        }
+
+        return encodeURIComponent(value);
+    };
 })();

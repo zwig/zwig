@@ -3,7 +3,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -34,26 +34,25 @@ class ConvertCommand extends Command
     protected function configure()
     {
         $this->setName('convert');
-        $this->setDescription('Converts Twig templates into JavaScript');
-        $this->setHelp("Todo: add help text");
+        $this->setDescription('Convert Twig templates into JavaScript');
 
-        $this->addArgument('target', InputArgument::REQUIRED, 'Where are your templates?');
+        $this->addArgument('input', InputArgument::REQUIRED, 'Template location or JSON file');
         $this->addOption(
-            'extension',
-            'e',
+            'extension', 'e',
             InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-            'What Twig extensions should be loaded?'
+            'Load a Twig extension'
         );
     }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return void
      * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->loadConfig($input);
+        $this->readParameters($input);
 
         $twigLoader = new Twig_Loader_Filesystem($this->root);
         $twigEnvironment = new Twig_Environment($twigLoader);
@@ -81,82 +80,88 @@ class ConvertCommand extends Command
      * @param InputInterface $input
      * @throws Exception
      */
-    private function loadConfig(InputInterface $input)
+    private function readParameters(InputInterface $input)
     {
-        $target = $input->getArgument('target');
-        if (is_dir($target)) {
-            $this->loadFilesFromDirectory($target);
-        } else if (is_file($target)) {
-            $this->loadFilesFromJSON($target);
-        } else {
-            throw new \Exception("Couldn't find the target");
+        if ($value = $input->getArgument('input')) {
+            if (is_dir($value)) {
+                $this->readDirectory($value);
+            } else {
+                $this->readJSON($value);
+            }
         }
 
-        $this->loadExtensions($input);
+        if ($value = $input->getOption('extension')) {
+            $this->readExtensions($value);
+        }
     }
 
     /**
-     * @param string $root
+     * @param string $path
      */
-    private function loadFilesFromDirectory($root)
+    private function readDirectory($path)
     {
-        $root = realpath($root);
+        $this->root = realpath($path);
 
-        $files = [];
-        $paths = [];
-
-        $directoryIterator = new \RecursiveDirectoryIterator($root);
+        $directoryIterator = new \RecursiveDirectoryIterator($this->root);
         $recursiveIterator = new \RecursiveIteratorIterator($directoryIterator);
         $iterator = new \RegexIterator($recursiveIterator, '/.*\.twig/', \RegexIterator::GET_MATCH);
 
+        $paths = [];
         foreach ($iterator as $path) {
             $paths = array_merge($paths, $path);
         }
 
-        foreach ($paths as $path) {
-            $source = $this->trimString($path, $root);
-            $destination = $this->trimString($source, '.twig') . '.js';
-            $files[$source] = $destination;
-        }
-
-        $this->root = $root;
-        $this->files = $files;
+        $this->readFilesFromArray($paths);
     }
 
     /**
      * @param string $path
      * @throws Exception
      */
-    private function loadFilesFromJSON($path)
+    private function readJSON($path)
     {
         try {
             $data = json_decode(file_get_contents($path));
         } catch (\Exception $ex) {
-            throw new Exception('Unable to parse JSON');
+            throw new Exception('JSON: unable to parse file');
         }
 
-        $root = realpath($data->root);
-        $files = [];
-
-        foreach ($data->files as $file) {
-            $file = realpath($file);
-            $source = $this->trimString($file, $root);
-            $destination = $this->trimString($source, '.twig') . '.js';
-            $files[$source] = $destination;
+        if (!isset($data->root)) {
+            throw new Exception('JSON: no root attribute');
         }
 
-        $this->root = $root;
-        $this->files = $files;
+        if (!isset($data->files)) {
+            throw new Exception('JSON: no files attribute');
+        }
+
+        $this->root = realpath($data->root);
+        $this->readFilesFromArray($data->files);
+
+        if (isset($data->extensions)) {
+            $this->readExtensions($data->extensions);
+        }
     }
 
     /**
-     * @param InputInterface $input
-     * @return mixed
+     * @param array $paths
+     */
+    private function readFilesFromArray(array $paths)
+    {
+        foreach ($paths as $path) {
+            $path = realpath($path);
+            $source = $this->trimString($path, $this->root);
+            $destination = $this->trimString($source, '.twig') . '.js';
+            $this->files[$source] = $destination;
+        }
+    }
+
+    /**
+     * @param array $extensions
+     * @return void
      * @throws Exception
      */
-    private function loadExtensions(InputInterface $input)
+    private function readExtensions(array $extensions)
     {
-        $extensions = $input->getOption('extension');
         foreach ($extensions as $index => $name) {
             if (!class_exists($name)) {
                 throw new \Exception(sprintf('Unable to load extension %s', $name));

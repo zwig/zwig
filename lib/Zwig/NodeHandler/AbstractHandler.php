@@ -2,7 +2,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -48,7 +48,7 @@ abstract class AbstractHandler
         }
 
         throw new UnknownStructureException(
-            sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getLine())
+            sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getTemplateLine())
         );
     }
 
@@ -62,7 +62,7 @@ abstract class AbstractHandler
      */
     protected function getOptionalCompiledNode(Compiler $compiler, Twig_Node $node, $name)
     {
-        if (($child = $node->getNode($name)) !== null) {
+        if ($node->hasNode($name) && ($child = $node->getNode($name)) !== null) {
             return $compiler->compileNode($child);
         }
 

@@ -2,7 +2,7 @@
 /*
  * This file is part of Zwig.
  *
- * (c) Alexander Skrotzky
+ * (c) Alexander Kramer
  *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed
@@ -38,7 +38,7 @@ class ExpressionArrayHandler extends AbstractHandler
     {
         if ($node->count() % 2 !== 0) {
             throw new UnknownStructureException(
-                sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getLine())
+                sprintf('Unknown structure for `%s` at line %s', __CLASS__, $node->getTemplateLine())
             );
         }
 
@@ -85,7 +85,7 @@ class ExpressionArrayHandler extends AbstractHandler
 
     /**
      * @param array $values
-     * @return Segment[]
+     * @return Segment
      */
     private function formatList(array $values)
     {
@@ -96,7 +96,7 @@ class ExpressionArrayHandler extends AbstractHandler
 
     /**
      * @param array $values
-     * @return Segment[]
+     * @return Segment
      */
     private function formatDict(array $values)
     {
